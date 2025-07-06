@@ -39,8 +39,8 @@ export default function login() {
   };
 
   return (
-    <div className="MainContainer">
-        <div className="Login-Container">
+    <div className="LoginScreen">
+        <div className="Login-Box">
           <div>로그인</div>
           <input type="text" name="userId" placeholder="아이디" onChange={handleChange} />
           <input type="password" name="password" placeholder="비밀번호" onChange={handleChange} />

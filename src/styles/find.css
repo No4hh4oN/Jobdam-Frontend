@@ -1,0 +1,97 @@
+.FindIdContainer {
+}
+
+.FindId-Intro-Box {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 33px;
+    padding: 0 31px;
+}
+
+.FindId-Intro-Title {
+    font-family: 'Pretendard-SemiBold';
+    font-size: 24px;
+    color: #171C20;
+}
+
+.FindId-Intro-subTitle {
+    font-family: 'Pretendard-Medium';
+    font-size: 16px;
+    color: #828797;
+}
+
+.findId-Verify-Box {
+    margin-top: 40px;
+    padding: 0 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.EmailForm {
+    display: flex;
+    gap: 8px;
+}
+
+#email {
+    width: 69%;
+    height: 58px;
+    padding: 0 18px;
+    font-family: 'Pretendard-Medium';
+    font-size: 16px;
+    color: #484D5A;
+    border: none;
+    border-radius: 16px;
+    background-color: #F6F8FB;
+    outline: none;
+}
+
+#email::placeholder {
+    color: #CCCFDB;
+}
+
+.EmailForm button {
+    width: 30%;
+    height: 58px;
+    border: 1.5px solid #6C3FF2;
+    border-radius: 16px;
+    font-family: 'Pretendard-Medium';
+    font-size: 14px;
+    color: #6C3FF2;
+    background-color: #FFFFFF;
+}
+
+#verifyCode {
+    width: 100%;
+    height: 58px;
+    padding: 0 18px;
+    font-family: 'Pretendard-Medium';
+    font-size: 16px;
+    color: #484D5A;
+    border: none;
+    border-radius: 16px;
+    background-color: #F6F8FB;
+    outline: none;
+}
+
+#verifyCode::placeholder {
+    color: #CCCFDB;
+}
+
+.findIdButton {
+    position: absolute;
+    bottom: 41px;
+    width: calc(100% - 40px);
+    margin-left: 20px;
+    margin-right: 20px;
+    height: 58px;
+    border-radius: 16px;
+    background-color: #6C3FF2;
+    font-family: 'Pretendard-Medium';
+    font-size: 16px;
+    color: #FFFFFF;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

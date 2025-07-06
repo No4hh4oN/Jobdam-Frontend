@@ -42,9 +42,9 @@ export default function signup() {
   };
 
   return (
-    <div className="MainContainer">
+    <div className="Signup-Screen">
 
-      <div className="Join-Container">
+      <div className="Signup-Box">
         <div>회원가입</div>
         <input type="text" name="userId" placeholder="아이디" onChange={handleChange} />
         <input type="password" name="password" placeholder="비밀번호" onChange={handleChange} />
