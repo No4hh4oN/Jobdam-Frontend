@@ -1,0 +1,97 @@
+.SignUp-Title{
+    font-family: 'Pretendard-SemiBold';
+    font-size: 24px;
+    color: #171C20;
+    padding: 0 31px;
+    margin-top: 25px;
+    margin-bottom: 60px;
+}
+
+.SignUp-verify-Box{
+    padding: 0 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 13px;
+    margin-bottom: 50px;
+}
+
+.SignUp-emailForm{
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+}
+
+.SignUp-input-Box{
+    padding : 0 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 13px;
+}
+
+.SignUp-Box span{
+    padding: 0 20px;
+    color: #A8ADBE;
+    font-family: 'Pretendard-Medium';
+    font-weight: 500;
+    font-size: 12px;
+}
+
+#signEmail{
+    width:70%;
+    height: 58px;
+    padding: 0 18px;
+    font-family: 'Pretendard-Medium';
+    font-size: 16px;
+    color: #484D5A;
+    border: none;
+    border-radius: 16px;
+    background-color: #F6F8FB;
+    outline: none;
+}
+.SignUp-emailForm button{
+    width: 30%;
+    height: 58px;
+    border: 1.5px solid #6C3FF2;
+    border-radius: 16px;
+    font-family: 'Pretendard-Medium';
+    font-size: 14px;
+    color: #6C3FF2;
+    background-color: #FFFFFF;
+}
+
+#signCode,#signId, #signPass, #signcheckPass {
+    width: 100%;
+    height: 58px;
+    padding: 0 18px;
+    font-family: 'Pretendard-Medium';
+    font-size: 16px;
+    color: #484D5A;
+    border: none;
+    border-radius: 16px;
+    background-color: #F6F8FB;
+    outline: none;
+}
+
+#signEmail::placeholder,
+#signCode::placeholder,#signId::placeholder, #signPass::placeholder, #signcheckPass::placeholder {
+    color: #CCCFDB;
+}
+
+.SignUpButton {
+    position: absolute;
+    bottom: 41px;
+    width: calc(100% - 40px);
+    margin-left: 20px;
+    margin-right: 20px;
+    height: 64px;
+    border-radius: 16px;
+    background-color: #6C3FF2;
+    font-family: 'Pretendard-Medium';
+    font-size: 20px;
+    color: #FFFFFF;
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
