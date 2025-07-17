@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const AxiosClient = axios.create({
-  baseURL: "http://sw2.gyoseung.me",
+  baseURL: "http://218.49.229.112:9090",
   headers: {
     "Content-Type": "application/json",
   },
@@ -14,6 +14,7 @@ const publicUrls = [
   "/auth/emailCode",
   "/auth/verifyNum",
   "/join/sendAuthEmail",
+  "/join/chkUserId"
 ];
 
 AxiosClient.interceptors.request.use((config) => {
