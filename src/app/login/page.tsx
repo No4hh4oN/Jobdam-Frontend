@@ -38,6 +38,7 @@ export default function Login() {
                 userId: form.userId,
                 userPassword: form.password,
                 },
+                withCredentials: true,
             });
             alert("로그인 성공");
             console.log(response)
