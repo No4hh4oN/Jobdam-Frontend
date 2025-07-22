@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const AxiosClient = axios.create({
-  baseURL: "/api",
+  baseURL: "http://218.49.229.112:9090",
   headers: {
     "Content-Type": "application/json",
   },
@@ -9,10 +9,8 @@ const AxiosClient = axios.create({
 
 // 토큰 필요 없는 요청
 const publicUrls = [
-  "/auth/login",
-  "/auth/signup",
-  "/auth/emailCode",
-  "/auth/verifyNum",
+  "/join/sendAuthEmail",
+  "/join/chkUserId"
 ];
 
 AxiosClient.interceptors.request.use((config) => {

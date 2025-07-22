@@ -22,8 +22,8 @@ export default function findId() {
 
     const sendCode = async () => {
         try {
-            const res = await AxiosClient.post('/auth/emailCode', {
-                email: emailForm.userEmail,
+            const res = await AxiosClient.post('/join/sendAuthEmail', {
+                userEmail: emailForm.userEmail,
             });
             alert("인증번호가 이메일로 전송되었습니다.");
         } catch (e: any) {
