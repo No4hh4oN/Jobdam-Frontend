@@ -62,7 +62,7 @@
     background-color: #FFFFFF;
 }
 
-#verifyCode {
+#autoCode {
     width: 100%;
     height: 58px;
     padding: 0 18px;
@@ -75,7 +75,7 @@
     outline: none;
 }
 
-#verifyCode::placeholder {
+#autoCode::placeholder {
     color: #CCCFDB;
 }
 

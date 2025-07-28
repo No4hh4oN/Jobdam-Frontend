@@ -44,12 +44,13 @@ export default function Signup() {
         setEmailVerify((prev) => ({ ...prev, [name]: value }));
     }
 
-    // 인증번호 전송
+    // 회원가입 인증번호 전송
     const handleSendCode = async ()=>{
         try{
             const res = await AxiosClient.post(`/join/sendAuthEmail`, null, {
                 params: {
                     userEmail: emailVerify.userEmail,
+                    type: "",
                 },
             });
             console.log(res)
@@ -71,6 +72,7 @@ export default function Signup() {
                 params: {
                     userEmail: emailVerify.userEmail,
                     authCode: authCodeNumber, //여기서 number로 변환해서 전송
+                    type: "",
                 },
             });
             console.log(res);
@@ -87,6 +89,7 @@ export default function Signup() {
             const res = await AxiosClient.get('/join/chkUserId', {
                 params: {
                     userId: form.userId,
+                    type: "",
                 },
             });
             console.log(res);

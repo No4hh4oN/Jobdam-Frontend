@@ -5,45 +5,61 @@ import { useState, ChangeEvent } from "react";
 import '../../styles/find.css';
 import AxiosClient from "../AxiosClient";
 
-
-interface FormState {
+interface EmailVerificationState {
     userEmail: string;
+    authCode: string;
 }
 
 export default function findId() {
-    const [emailForm, setEmailForm] = useState<FormState>({
+
+    const [emailVerify, setEmailVerify] = useState<EmailVerificationState>({
         userEmail: "",
-    })
+        authCode: "",
+    });
 
-    const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const handleEmailVerifyChange = (e: ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;
-        setEmailForm((prev) => ({ ...prev, [name]: value }));
-    };
+        setEmailVerify((prev) => ({ ...prev, [name]: value }));
+    }
 
-    const sendCode = async () => {
+    // 회원가입 인증번호 전송
+    const handleSendCode = async () => {
         try {
-            const res = await AxiosClient.post('/join/sendAuthEmail', {
-                userEmail: emailForm.userEmail,
+            const res = await AxiosClient.post(`/join/sendAuthEmail`, null, {
+                params: {
+                    userEmail: emailVerify.userEmail,
+                    type: "find",
+                },
             });
+            console.log(res)
             alert("인증번호가 이메일로 전송되었습니다.");
         } catch (e: any) {
-            console.log(e);
+            console.log(e)
         }
     }
 
-    const [verifyCode, setVerifyCode] = useState("");
-    const [userId, setUserId] = useState<String>("");
-
-    const handleVerify = async () => {
+    // 이메일 인증 확인
+    const handleCheckEmail = async () => {
         try {
-            const res = await AxiosClient.post('/auth/verifyNum', {
-                verifyCode: verifyCode,
+            const authCodeNumber = parseInt(emailVerify.authCode, 10);
+            if (isNaN(authCodeNumber)) {
+                alert("인증번호를 숫자로 입력해주세요.");
+                return;
+            }
+            const res = await AxiosClient.post(`/join/authEmail`, null, {
+                params: {
+                    userEmail: emailVerify.userEmail,
+                    authCode: authCodeNumber, //여기서 number로 변환해서 전송
+                    type: "find",
+                },
             });
-            setUserId(res.data.userId);
-        } catch (e: any) {
-            console.log(e);
+            console.log(res);
+            alert("이메일 인증 완료");
+        } catch (error) {
+            console.error(error);
+            alert("이메일 인증 실패");
         }
-    }
+    };
 
     return (
         <div className="FindIdContainer">
@@ -58,16 +74,16 @@ export default function findId() {
             </div>
             <div className="findId-Verify-Box">
                 <div className="EmailForm">
-                    <input id="email" type="text" name="userEmail" placeholder="이메일을 입력해주세요."
-                        value={emailForm.userEmail}
-                        onChange={handleChange} />
-                    <button>인증번호 전송</button>
+                    <input id="email" type="email" name="userEmail" placeholder="이메일을 입력해주세요."
+                        value={emailVerify.userEmail}
+                        onChange={handleEmailVerifyChange} />
+                    <button onClick={handleSendCode}>인증번호 전송</button>
                 </div>
-                <input id="verifyCode" type="text" name="verifyCode" placeholder="인증번호를 입력해주세요"
-                    value={verifyCode}
-                    onChange={(e) => setVerifyCode(e.target.value)} />
+                <input id="autoCode" type="text" name="autoCode" placeholder="인증번호를 입력해주세요"
+                    value={emailVerify.authCode}
+                    onChange={handleEmailVerifyChange} />
             </div>
-            <div className="findIdButton" onClick={handleVerify}>
+            <div className="findIdButton" onClick={handleCheckEmail}>
                 아이디 찾기
             </div>
         </div>
