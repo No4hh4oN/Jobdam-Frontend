@@ -15,7 +15,7 @@
     margin-bottom: 50px;
 }
 
-.SignUp-emailForm{
+.SignUp-emailForm, .SignUp-verifycheck{
     display: flex;
     flex-direction: row;
     gap: 8px;
@@ -28,15 +28,7 @@
     gap: 13px;
 }
 
-.SignUp-Box span{
-    padding: 0 20px;
-    color: #A8ADBE;
-    font-family: 'Pretendard-Medium';
-    font-weight: 500;
-    font-size: 12px;
-}
-
-#signEmail{
+#signEmail, #signCode{
     width:70%;
     height: 58px;
     padding: 0 18px;
@@ -48,7 +40,7 @@
     background-color: #F6F8FB;
     outline: none;
 }
-.SignUp-emailForm button{
+.SignUp-emailForm button,.signup-verify-btn-purple {
     width: 30%;
     height: 58px;
     border: 1.5px solid #6C3FF2;
@@ -59,7 +51,18 @@
     background-color: #FFFFFF;
 }
 
-#signCode,#signId, #signPass, #signcheckPass {
+.signup-verify-btn-gray{
+    width: 30%;
+    height: 58px;
+    border-radius: 16px;
+    font-family: 'Pretendard-Medium';
+    font-size: 14px;
+    color: #A8ADBE;
+    background-color: #FFFFFF;
+    border: 1.5px solid #A8ADBE;
+}
+
+#signId, #signPass, #signcheckPass {
     width: 100%;
     height: 58px;
     padding: 0 18px;
@@ -77,12 +80,22 @@
     color: #CCCFDB;
 }
 
+#signCode.error {
+    border: 2px solid #FF4444;
+}
+
+.signup-fail-code{
+    color: #FF4444;
+    font-family: 'Pretendard-Medium';
+    font-weight: 500;
+    font-size: 12px;
+    padding: 0 20px;
+}
+
 .SignUpButton {
     position: absolute;
-    bottom: 41px;
+    bottom: 41px; 
     width: calc(100% - 40px);
-    margin-left: 20px;
-    margin-right: 20px;
     height: 64px;
     border-radius: 16px;
     background-color: #6C3FF2;
@@ -95,3 +108,6 @@
     align-items: center;
 }
 
+.SignUpButton.nextbtn-gray{
+    background-color: #CCCFDB;
+}

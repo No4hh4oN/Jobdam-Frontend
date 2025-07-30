@@ -9,12 +9,11 @@ const AxiosClient = axios.create({
 
 // 토큰 필요 없는 요청
 const publicUrls = [
-  "/auth/login",
-  "/auth/signup",
-  "/auth/emailCode",
-  "/auth/verifyNum",
+  "/login",
+  "/join/register",
   "/join/sendAuthEmail",
-  "/join/chkUserId"
+  "/join/chkUserId",
+  "/join/authEmail"
 ];
 
 AxiosClient.interceptors.request.use((config) => {

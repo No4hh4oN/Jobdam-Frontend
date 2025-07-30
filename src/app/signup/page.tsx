@@ -1,8 +1,9 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
 import { useState, ChangeEvent } from "react";
+import { useRouter } from 'next/navigation';
 import AxiosClient from "../AxiosClient";
 import BackNavigator from "@/components/backButton";
 import '../../styles/signup.css';
@@ -23,6 +24,12 @@ interface EmailVerificationState {
 }
 
 export default function Signup() {
+    const router = useRouter();
+    const [step, setStep] = useState<"verify" | "form" | "complete">("verify");
+    const [codeSent, setCodeSent] = useState(false); // 텍스트 : 인증번호 전송 -> 재전송 
+    const [emailVerified, setEmailVerified] = useState<boolean>(false); // 확인여부에 따른 '다음' 버튼 활성화,비활성화
+    const [emailVerifyFailed, setEmailVerifyFailed] = useState(false); // 인증번호 틀렸을때 메시지 나오게
+    
 
     const [form, setForm] = useState<FormState>({
         userEmail: "",
@@ -46,18 +53,20 @@ export default function Signup() {
         setEmailVerify((prev) => ({ ...prev, [name]: value }));
     }
 
-    // 인증번호 전송
+    // 이메일 인증번호 전송
     const handleSendCode = async ()=>{
         try{
             const res = await AxiosClient.post(`/join/sendAuthEmail`, null, {
                 params: {
                     userEmail: emailVerify.userEmail,
+                    type: "",
                 },
             });
             console.log(res)
             alert("인증번호가 이메일로 전송되었습니다.");
-        }catch(e:any){
-            console.log(e)
+            setCodeSent(true);
+        }catch(error){
+            console.error(error)
         }
     }
 
@@ -73,13 +82,15 @@ export default function Signup() {
                 params: {
                     userEmail: emailVerify.userEmail,
                     authCode: authCodeNumber, //여기서 number로 변환해서 전송
+                    type: "",
                 },
             });
             console.log(res);
-            alert("이메일 인증 완료");
+            setEmailVerified(true);
+            setEmailVerifyFailed(false)
         } catch (error) {
             console.error(error);
-            alert("이메일 인증 실패");
+            setEmailVerifyFailed(true);
         }
     };
 
@@ -89,6 +100,7 @@ export default function Signup() {
             const res = await AxiosClient.get('/join/chkUserId', {
                 params: {
                     userId: form.userId,
+                    type: "",
                 },
             });
             console.log(res);
@@ -127,6 +139,7 @@ export default function Signup() {
                 },
             });
             alert("회원가입 성공");
+            setStep("complete");
             console.log(response)
         } catch (error) {
             console.error("회원가입 실패", error);
@@ -134,6 +147,9 @@ export default function Signup() {
         }
     };
 
+    // 인증번호 타이핑 부분
+    const isAuthCodeEmpty = emailVerify.authCode.trim() === "";
+    const isAuthCodeTyping = !isAuthCodeEmpty && !emailVerified;
 
     return (
         <div className="Signup-Screen">
@@ -141,23 +157,74 @@ export default function Signup() {
             <div className="SignUp-Box">
                 <div className="SignUp-Title">회원가입</div>
 
+            {step === 'verify' && (
                 <div className="SignUp-verify-Box">
                     <div className="SignUp-emailForm">
-                        <input id="signEmail" type="email" name="userEmail" placeholder="이메일을 입력해주세요" value={emailVerify.userEmail}  onChange={handleEmailVerifyChange} />
-                        <button onClick={handleSendCode}>인증번호 전송</button>
+                        <input 
+                            id="signEmail" 
+                            type="email" 
+                            name="userEmail" 
+                            placeholder="이메일을 입력해주세요" 
+                            value={emailVerify.userEmail}  
+                            onChange={handleEmailVerifyChange} 
+                        />
+                        <button onClick={handleSendCode}>
+                            {codeSent ? "재전송" : "인증번호 전송"}
+                        </button>
                     </div>
-                    <input id="signCode" type="text" name="authCode" placeholder="인증번호를 입력해주세요" value={emailVerify.authCode} onChange={handleEmailVerifyChange} />
-                    <button onClick={handleCheckEmail}>이메일 인증 확인</button>
-                </div>
 
+                    <div className="SignUp-verifycheck">
+                        <input 
+                            id="signCode" 
+                            type="text" 
+                            name="authCode" 
+                            placeholder="인증번호를 입력해주세요" 
+                            value={emailVerify.authCode} 
+                            onChange={handleEmailVerifyChange} 
+                            className={emailVerifyFailed ? "error" : ""}
+                        />
+                        <button
+                            onClick={handleCheckEmail}
+                            className={
+                                emailVerified
+                                ? "signup-verify-btn-gray"
+                                : (!isAuthCodeEmpty && !emailVerified)
+                                ? "signup-verify-btn-purple"
+                                : "signup-verify-btn-gray"
+                            }
+                        >
+                            {emailVerified ? "인증완료" : "확인"}
+                        </button>
+                    </div>
+                    {emailVerifyFailed && (<span className="signup-fail-code">인증번호가 일치하지 않습니다.</span>)}                    
+                    <div className="SignUp-next">
+                        <button 
+                            className={`SignUpButton ${emailVerified ? "nextbtn-purple" : "nextbtn-gray"}`} 
+                            onClick={() => setStep("form")} disabled={!emailVerified}>
+                            다음
+                        </button>                        
+                    </div>
+                </div>
+            )}
+            {step === "form" && (    
                 <div className="SignUp-input-Box">
                     <input id="signId" type="text" name="userId" placeholder="아이디를 입력해주세요" value={form.userId}  onChange={handleChange} />
                     <button onClick={handleCheck}>아이디 중복확인</button>
                     <input id="signPass" type="password" name="userPassword" placeholder="비밀번호를 입력해주세요" value={form.userPassword} onChange={handleChange} />
                     <input id="signcheckPass" type="password" name="passwordCheck" placeholder="비밀번호를 확인해주세요" value={form.passwordCheck || ""} onChange={handleChange} />
+                    <span>비밀번호는 8~20자의 영문, 숫자, 특수문자를 포함해야 합니다.</span>
+
+                    <button className="SignUpButton" onClick={handleRegister}>회원가입하기</button>
                 </div>
-                <span>비밀번호는 8~20자의 영문, 숫자, 특수문자를 포함해야 합니다.</span>
-                <button className="SignUpButton" onClick={handleRegister}>회원가입하기</button>
+            )}
+            {step === "complete" && (
+                <div className="SignUp-complete-Box" >
+                    <h2>hi</h2>
+                    <button className="SignUpButton" onClick={() => router.push('/login')}>
+                        로그인하러가기
+                    </button>
+                </div>
+            )}            
             </div>
         </div>
     );
