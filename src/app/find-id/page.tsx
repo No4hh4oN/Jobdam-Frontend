@@ -1,6 +1,7 @@
 "use client";
 
 import BackNavigator from "@/components/backButton";
+import { useRouter } from 'next/navigation';
 import { useState, ChangeEvent } from "react";
 import '../../styles/find.css';
 import AxiosClient from "../AxiosClient";
@@ -11,7 +12,9 @@ interface EmailVerificationState {
 }
 
 export default function findId() {
-
+    const router = useRouter();
+    const [userId, setUserId] = useState<string | null>(null);
+    const [step, setStep] = useState<"empty" | "filled" | "complete">("empty");
     const [emailVerify, setEmailVerify] = useState<EmailVerificationState>({
         userEmail: "",
         authCode: "",
@@ -19,7 +22,15 @@ export default function findId() {
 
     const handleEmailVerifyChange = (e: ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;
-        setEmailVerify((prev) => ({ ...prev, [name]: value }));
+        setEmailVerify((prev) => {
+            const newState = { ...prev, [name]: value };
+
+            if (name === "authCode" && value.trim() !== "") {
+                setStep("filled");
+            }
+
+            return newState;
+        });
     }
 
     // 회원가입 인증번호 전송
@@ -53,8 +64,11 @@ export default function findId() {
                     type: "find",
                 },
             });
-            console.log(res);
             alert("이메일 인증 완료");
+            
+            setUserId(res.data.id);
+            setStep("complete");
+
         } catch (error) {
             console.error(error);
             alert("이메일 인증 실패");
@@ -68,24 +82,52 @@ export default function findId() {
                 <span className="FindId-Intro-Title">
                     아이디 찾기
                 </span>
-                <div className="FindId-Intro-subTitle">
-                    회원가입에 등록한 이메일을 입력해주세요.
-                </div>
+                {step !== "complete" &&
+                    <div className="FindId-Intro-subTitle">
+                        회원가입에 등록한 이메일을 입력해주세요.
+                    </div>
+                }
+                {step === "complete" &&
+                    <div className="FindId-Intro-subTitle">
+                        해당 이메일과 일치하는 아이디를 찾았어요.
+                    </div>
+                }
             </div>
-            <div className="findId-Verify-Box">
-                <div className="EmailForm">
-                    <input id="email" type="email" name="userEmail" placeholder="이메일을 입력해주세요."
-                        value={emailVerify.userEmail}
+            {step !== "complete" &&
+                <div className="findId-Verify-Box">
+                    <div className="EmailForm">
+                        <input id="email" type="email" name="userEmail" placeholder="이메일을 입력해주세요."
+                            value={emailVerify.userEmail}
+                            onChange={handleEmailVerifyChange} />
+                        <button onClick={handleSendCode}>인증번호 전송</button>
+                    </div>
+                    <input id="autoCode" type="text" name="authCode" placeholder="인증번호를 입력해주세요"
+                        value={emailVerify.authCode}
                         onChange={handleEmailVerifyChange} />
-                    <button onClick={handleSendCode}>인증번호 전송</button>
                 </div>
-                <input id="autoCode" type="text" name="autoCode" placeholder="인증번호를 입력해주세요"
-                    value={emailVerify.authCode}
-                    onChange={handleEmailVerifyChange} />
-            </div>
-            <div className="findIdButton" onClick={handleCheckEmail}>
-                아이디 찾기
-            </div>
+            }
+            {step === "complete" && 
+                <div className="findId-Id-Box">
+                    <span className="findId-Id-Box-userId">{userId}</span>
+                    <span className="findId-Id-Box-userEmail">{emailVerify.userEmail}</span>
+                </div>
+            }
+            
+            {step === "empty" &&
+                <div id="empty" className="findIdButton">
+                    아이디 찾기
+                </div>
+            }
+            {step === "filled" &&
+                <div id="filled" className="findIdButton" onClick={handleCheckEmail}>
+                    아이디 찾기
+                </div>
+            }
+            {step === "complete" &&
+                <div className="findIdButton" onClick={() => router.push('/login')}>
+                    확인
+                </div>
+            }
         </div>
     )
 }
