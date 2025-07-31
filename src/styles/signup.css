@@ -15,7 +15,7 @@
     margin-bottom: 50px;
 }
 
-.SignUp-emailForm, .SignUp-verifycheck{
+.SignUp-emailForm, .SignUp-verifycheck, .signup-id-check{
     display: flex;
     flex-direction: row;
     gap: 8px;
@@ -40,7 +40,7 @@
     background-color: #F6F8FB;
     outline: none;
 }
-.SignUp-emailForm button,.signup-verify-btn-purple {
+.SignUp-emailForm button,.signup-verify-btn-purple,.signup-id-check button {
     width: 30%;
     height: 58px;
     border: 1.5px solid #6C3FF2;
@@ -80,7 +80,7 @@
     color: #CCCFDB;
 }
 
-#signCode.error {
+#signCode.error,#signId.error,#signPass.error,#signcheckPass.error {
     border: 2px solid #FF4444;
 }
 
@@ -110,4 +110,43 @@
 
 .SignUpButton.nextbtn-gray{
     background-color: #CCCFDB;
+}
+
+.userIdCheck-T{
+    font-family: 'Pretendard-Medium';
+    font-weight: 500;
+    font-size: 12px;
+    margin-left: 20px;
+    color: #6C3FF2;
+}
+.userIdCheck-F,.userPassword-fail{
+    font-family: 'Pretendard-Medium';
+    font-weight: 500;
+    font-size: 12px;
+    margin-left: 20px;
+    color: #FF4444;
+}
+
+.SignUp-complete-Box{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;   
+    height: 100vh;
+}
+.SignUp-complete-Box div{
+    font-family: 'Pretendard-SemiBold';
+    font-weight: 500;
+    font-size: 24px;
+    color: #171C20;
+    margin-top: 20px;
+}
+.SignUp-complete-Box span{
+    font-family: 'Pretendard-Medium';
+    font-weight: 500;
+    font-size: 16px;
+    text-align: center;
+    color:#A8ADBE;
+    margin-top: 20px;
+    margin-bottom: 50px;
 }
