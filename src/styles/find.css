@@ -122,3 +122,103 @@
     font-size: 18px;
     color: #A8ADBE;
 }
+
+.FindPwContainer {
+
+}
+
+.FindPw-Intro-Box {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 33px;
+    padding: 0 31px;
+}
+
+.FindPw-Intro-Title {
+    font-family: 'Pretendard-SemiBold';
+    font-size: 24px;
+    color: #171C20;
+}
+
+.FindPw-Intro-subTitle {
+    font-family: 'Pretendard-Medium';
+    font-size: 16px;
+    color: #828797;
+}
+
+.findPw-Verify-Box {
+    margin-top: 40px;
+    padding: 0 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.findPwButton {
+    position: absolute;
+    bottom: 41px;
+    width: calc(100% - 40px);
+    margin-left: 20px;
+    margin-right: 20px;
+    height: 58px;
+    border-radius: 16px;
+    background-color: #6C3FF2;
+    font-family: 'Pretendard-Medium';
+    font-size: 16px;
+    color: #FFFFFF;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.findPw-Pw-Box {
+    position: absolute;
+    top: 50%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 6px;
+}
+
+.findPw-Pw-Box-userId {
+    font-family: 'Pretendard-SemiBold';
+    font-size: 28px;
+    color: #6C3FF2;
+}
+
+#userId {
+    width: 100%;
+    height: 58px;
+    padding: 0 18px;
+    font-family: 'Pretendard-Medium';
+    font-size: 16px;
+    color: #484D5A;
+    border: none;
+    border-radius: 16px;
+    background-color: #F6F8FB;
+    outline: none;
+}
+#userId::placeholder {
+    color: #CCCFDB;
+}
+
+#newPw, #checkPw {
+    width: 100%;
+    height: 58px;
+    padding: 0 18px;
+    font-family: 'Pretendard-Medium';
+    font-size: 16px;
+    color: #484D5A;
+    border: none;
+    border-radius: 16px;
+    background-color: #F6F8FB;
+    outline: none;
+}
+
+#newPw::placeholder, #checkPw::placeholder {
+    color: #CCCFDB;
+}
