@@ -13,8 +13,7 @@ const publicUrls = [
   "/join/register",
   "/join/sendAuthEmail",
   "/join/chkUserId",
-  "/join/authEmail",
-  "/join/chgUserPassword",
+  "/join/authEmail"
 ];
 
 AxiosClient.interceptors.request.use((config) => {
