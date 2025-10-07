@@ -13,6 +13,7 @@ export default function Home() {
       <button onClick={() => router.push('/signup')}>회원가입</button>
       <button onClick={() => router.push('/find-id')}>아이디 찾기</button>
       <button onClick={() => router.push('/find-pw')}>비밀번호 찾기</button>
+      <button onClick={() => router.push('/main-home')}>홈화면</button>
     </div>
   );
 }
