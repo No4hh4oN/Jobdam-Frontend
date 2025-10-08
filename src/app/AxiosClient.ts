@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const AxiosClient = axios.create({
-  baseURL: "http://218.49.229.112:9090",
+  baseURL: "https://sw2.gyoseung.me/",
   headers: {
     "Content-Type": "application/json",
   },
@@ -12,6 +12,8 @@ const publicUrls = [
   "/login",
   "/join/register",
   "/join/sendAuthEmail",
+  "/join/sendChangeEmail",
+  "/join/chgUserPassword",
   "/join/chkUserId",
   "/join/authEmail"
 ];

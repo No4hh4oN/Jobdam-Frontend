@@ -41,10 +41,10 @@ export default function findPw() {
     // 회원가입 인증번호 전송
     const handleSendCode = async () => {
         try {
-            const res = await AxiosClient.post(`/join/sendAuthEmail`, null, {
+            const res = await AxiosClient.post(`/join/sendChangeEmail`, null, {
                 params: {
+                    userId: emailVerify.userId,
                     userEmail: emailVerify.userEmail,
-                    type: "change",
                 },
             });
             console.log(res)

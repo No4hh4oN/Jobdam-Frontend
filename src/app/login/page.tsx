@@ -33,15 +33,15 @@ export default function Login() {
 
     const handleLogin = async () => {
         try {
-        const response = await AxiosClient.post("/login", null, {
-            params: {
-                userId: form.userId,
-                userPassword: form.password,
+            const response = await AxiosClient.post("/login", {
+                    userId: form.userId,
+                    userPassword: form.password,
                 },
-                withCredentials: true,
-            });
-            alert("로그인 성공");
-            console.log(response)
+                {
+                    withCredentials: true,
+                }
+            );
+
         } catch (error) {
             console.error("로그인 실패", error);
             alert("로그인 실패");
