@@ -235,6 +235,57 @@ export default function DetailContents() {
                         <p>누가, 언제, 무슨 내용으로 보냈는지 파일명을 보면 한눈에 보여야해요. 그게 바로 일 잘하는 첫걸음이에요.</p>
                         <hr style={{ height: "1.5px", backgroundColor:"#E1E4EE" }} />
                     </div>
+                    <div className="detail-contents-main-container">
+                        <div className="detail-contents-mainBox-top">파일명 작성하는 법</div>
+                        <div className="detail-table-box">
+                            <table className="detail-file-table">
+                                <thead>
+                                    <tr>
+                                        <th>구분</th>
+                                        <th>표시법</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>연도</td>
+                                        <td>2025</td>
+                                    </tr>
+                                    <tr>
+                                        <td>파일 주제</td>
+                                        <td>2025_OO제안서</td>
+                                    </tr>
+                                    <tr>
+                                        <td>작성자</td>
+                                        <td>2025_OO제안서_김잡담</td>
+                                    </tr>
+                                    <tr>
+                                        <td>버전</td>
+                                        <td>2025_OO제안서_김잡담_V1</td>
+                                    </tr>
+                                    <tr>
+                                        <td>날짜</td>
+                                        <td>2025_OO제안서_김잡담_V1_1001</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div className="detail-contents-mainBox">
+                            <span className="detail-main-title">파일명 앞에 연도 붙이기</span>
+                            <div className="contents-mainBox">
+                                <span>
+                                    해가 바뀌면 이전 파일을 찾기 어려워져요. 연도를 앞에 붙이면 정렬도 깔끔하고,작업물 추적도 쉬워져요.
+                                </span>
+                            </div>
+                        </div>
+                        <div className="detail-contents-mainBox">
+                            <span className="detail-main-title">주제 + 작성자 + 버전은 기본</span>
+                            <div className="contents-mainBox">
+                                <span>
+                                    누가 작성했고, 어떤 주제인지, 그리고 몇 번째 버전인지. 이 3가지를 포함하면 파일의 정체성이 한번에 보여요.
+                                </span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             )}
 
@@ -273,6 +324,44 @@ export default function DetailContents() {
                         </p>
                         <p>씀씀이가 커지는 건 한순간이지만, 나중에 줄이려면 쉽지 않기 때문에 사회초년생에게 통장 쪼개기는 꼭 필요해요.</p>
                         <hr style={{ height: "1.5px", backgroundColor:"#E1E4EE" }} />
+                    </div>
+                    <div className="detail-contents-main-container">
+                        <div className="detail-contents-mainBox-top">
+                            <span className="detail-highlight">어떤 용도로, 몇 개로</span> 쪼개는 게 좋은가요?</div>
+                        <div className="detail-main-title-sub" style={{marginTop:"30px"}}>1. 급여통장</div>
+                        <div className="contents-mainBox-sub">
+                            <span>
+                                적극적인 자세를 보여주기 위해선 메모 습관이 중요해요.
+                                스스로 직접 챙겨온 걸 좋게 보는 사람들도 있는 데다가, 메모장이 포스트잇이라면 기록 후 잃어버릴 수 있으니 
+                                평소 사용하던 손에 익숙한 필기구를 추천해요.
+                            </span>
+                        </div>
+                        <div className="detail-main-title-sub">2. 저축/투자 통장</div>
+                        <div className="contents-mainBox-sub">
+                            <span>
+                                예금, 적금, 주식 투자, 주택 청약 등 재테크를 위한 통장이에요. 돈을 남는 돈을 모으는 게 아니라, 모으고 남는 돈을 써야 해요.
+                                <br /><br />
+                                급여통장에서 예적금 통장으로 바로 입금하는 방법도 있고, 별도로 저축/투자용 통장을 만들어 재테크 자금을 모두 넣어놔도 좋아요. 수시 입출금이 가능하면서, 이자도 받을 수 있는 파킹통장을 활용해보세요.
+                            </span>
+                        </div>
+                        <div className="detail-main-title-sub">3. 생활비</div>
+                        <div className="contents-mainBox-sub">
+                            <span>
+                                매달 쓸 생활비를 넣어놓는 통장이에요. 얼마를 넣어야 하는지 고민된다면, 우선 한 달 고정지출이 얼마나 되는지 계산해보세요. 생활비 통장 역시 입출금통장을 활용하고, 체크카드를 연결해서 바로 쓸 수 있도록 해두면 편해요.
+                            </span>
+                        </div>        
+                        <div className="detail-main-title-sub">4. 비상금</div>
+                        <div className="contents-mainBox-sub">
+                            <span>
+                                갑자기 큰 돈이 필요할 때가 있죠. 몸이 아파 수술을 받아야 하거나, 가까운 지인의 경조사가 여기에 해당돼요. 이런 돈을 생활비 통장에서 해결하려면 예산이 초과되겠죠. 미리 비상금 통장을 만들어 두고 꺼내 쓰는 걸 추천해요.
+                            </span>
+                        </div>      
+                        <div className="detail-main-title-sub">5. 기타</div>
+                        <div className="contents-mainBox-sub">
+                            <span>
+                                소비생활은 사람마다 많이 다르기 때문에 각자 필요에 따라 통장을 더 만들면 돼요. 예를 들어, 취미생활에 돈이 필요하다면 취미통장을 따로 만들고, 취미생활을 할 때는 그 통장에 있는 돈으로 소비해요.
+                            </span>
+                        </div>
                     </div>
                 </div>
             )}
