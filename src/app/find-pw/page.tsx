@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/no-unused-vars */
 "use client";
 
 import BackNavigator from "@/components/backButton";
@@ -13,7 +15,7 @@ interface EmailVerificationState {
     userId: string;
 }
 
-export default function findPw() {
+export default function FindPw() {
     const router = useRouter();
     const [newPassword, setNewPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");

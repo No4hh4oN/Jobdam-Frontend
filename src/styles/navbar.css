@@ -1,0 +1,31 @@
+.NavBar {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around; 
+    border-top: 1px solid #CCCFDB;
+    height: 99px;
+    position: fixed; 
+    bottom: 0;       
+    left: 0;          
+    width: 100%;     
+    background-color: #fff; 
+    z-index: 1000;   
+}
+.NavBar-menu{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+}
+.NavBar-menu span {
+    color: #CCCFDB; 
+    font-family: 'Pretendard-Medium';
+    font-weight: 500;
+    font-size: 12px;
+    text-align: center;
+    margin-top: 4px;
+}
+.NavBar-menu span.active {
+    color: #6C3FF2; 
+}
