@@ -1,0 +1,85 @@
+.mypage-home{
+    width: 100%;     
+    background-color: #fff;
+    margin-top: 78px;
+}
+.mypage-home-title{
+    font-family: 'Pretendard-SemiBold';
+    font-weight: 600;
+    font-size: 24px;
+    color: #171C20;
+    padding-left: 25px;
+    padding-bottom: 35px;
+}
+
+.mypage-home-mainBox{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.mypage-home-menu,.mypage-home-menu-user{
+    border-radius: 16px;
+    padding: 24px;
+    background-color: #F6F8FB;
+    width: calc(100% - 40px);
+    box-sizing: border-box;
+}
+
+.mypage-home-menu{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 13px;
+    align-items: center;
+}
+.mypage-home-menu span{
+    font-family: 'Pretendard-SemiBold';
+    font-weight: 600;
+    font-size: 16px;
+    color: #484D5A;
+}
+
+.mypage-home-menu-user{
+    font-family: 'Pretendard-SemiBold';
+    font-weight: 600;
+    font-size: 16px;
+    color: #484D5A;
+    margin-bottom: 13px;
+}
+
+.mypage-home-menu button{
+    width: 79px;
+    height: 34px;
+    border-radius: 7px;
+    padding: 10px 12px;
+    border: none;
+    outline: none;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Pretendard-Medium';
+    font-weight: 500;
+    font-size: 12px;
+    color: #6C3FF2;
+    background-color: #DDD1FF;
+}
+.mypage-home-userInfo span{
+    display: flex;
+    flex-direction: column;
+    color: #A8ADBE;
+    font-family: 'Pretendard-Medium';
+    font-weight: 500;
+    font-size: 14px;
+}
+.mypage-home-userInfo span:nth-of-type(1){
+    color: #484D5A;
+    font-family: 'Pretendard-SemiBold';
+    font-weight: 600;
+    font-size: 20px;
+}
+
+.mypage-home-userInfo{
+    margin-left: -52px;
+}

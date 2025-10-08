@@ -28,7 +28,7 @@ export default function NavBar() {
                 router.push("/llmTuter");
                 break;
             case "profile":
-                // router.push("/mypage");
+                router.push("/mypage");
                 break;
         }
     };

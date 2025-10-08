@@ -1,0 +1,220 @@
+.Edit-UserInfo-Intro-Box {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 33px;
+    padding: 0 31px;
+}
+
+.Edit-UserInfo-Intro-Title {
+    font-family: 'Pretendard-SemiBold';
+    font-size: 24px;
+    color: #171C20;
+}
+
+.Edit-UserInfo-Intro-subTitle {
+    font-family: 'Pretendard-Medium';
+    font-size: 16px;
+    color: #828797;
+}
+
+.MyInfo-Verify-Box {
+    margin-top: 40px;
+    padding: 0 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.ReChk-nextButton {
+    position: absolute;
+    bottom: 41px;
+    width: calc(100% - 40px);
+    margin-left: 20px;
+    margin-right: 20px;
+    height: 58px;
+    border-radius: 16px;
+    background-color: #6C3FF2;
+    font-family: 'Pretendard-Medium';
+    font-size: 16px;
+    color: #FFFFFF;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+#chkEmail, #checkPw {
+    width: 100%;
+    height: 58px;
+    padding: 0 18px;
+    font-family: 'Pretendard-Medium';
+    font-size: 16px;
+    color: #484D5A;
+    border: none;
+    border-radius: 16px;
+    background-color: #F6F8FB;
+    outline: none;
+}
+
+#checkPw::placeholder {
+    color: #CCCFDB;
+}
+
+#chkEmail::placeholder{
+    color: #484D5A;
+}
+
+.Edit-Email-or-Pw-Box{
+    padding: 0 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 13px;
+    margin-top: 40px;
+}
+
+.Edit-Form-Box{
+    display: flex;
+    flex-direction: column;
+}
+
+#EditEmail,#EditPw,#EditEmailVerify{
+    width:70%;
+    height: 58px;
+    padding: 0 18px;
+    font-family: 'Pretendard-Medium';
+    font-size: 16px;
+    color: #484D5A;
+    border: none;
+    border-radius: 16px;
+    background-color: #F6F8FB;
+    outline: none;
+}
+.Edit-Form-Box button{
+    width: 30%;
+    height: 58px;
+    border: 1.5px solid #6C3FF2;
+    border-radius: 16px;
+    font-family: 'Pretendard-Medium';
+    font-size: 14px;
+    color: #6C3FF2;
+    background-color: #FFFFFF;
+}
+.Edit-Email-Box,.Edit-Pw-Box,.Edit-Email-Verify-Box{
+    gap: 8px;
+    display: flex;
+    flex-direction: row;
+}
+
+.Edit-Form-title{
+    font-family: 'Pretendard-SemiBold';
+    font-weight: 600;
+    font-size: 20px;
+    color: #171C20;
+    padding-left:13px; 
+    margin-bottom: 10px;
+}
+.Edit-Save-New-Email{
+    margin-top: 13px;
+    display: flex;
+    flex-direction: column;
+    gap: 13px;
+}
+.Save-New-Email-btn{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.Save-New-Email-btn button{
+    width: 49%;
+    font-family: 'Pretendard-Medium';
+    font-weight: 500;
+    font-size: 16px;
+    text-align: center;
+}
+.Save-New-Email-btn button:nth-of-type(1){
+    color: #828797;
+    border: 1.5px solid #828797;
+    background-color: #fff;
+}
+.Save-New-Email-btn button:nth-of-type(2){
+    color: #FFFFFF;
+    background-color: #CCCFDB;
+    border: none;
+}
+
+.Edit-Email-Verify-Box button{
+    border: 1.5px solid #A8ADBE;
+    color: #A8ADBE;
+}
+.editing-verify-input::placeholder {
+    color: #CCCFDB;
+}
+.editing-email-input::placeholder{
+    color: #CCCFDB;
+}
+.Edit-Email-Verify-Box button.active {
+    border: 1.5px solid #6C3FF2;
+    color: #6C3FF2;
+}
+
+
+.editing-current-pw::placeholder {
+    color: #CCCFDB;
+}
+.Edit-Pw-Box .cancel-pw-btn {
+    background-color: #fff;
+    color: #828797;
+    border: 1.5px solid #828797;
+    width: 38%;
+}
+
+.Edit-NewPw-input-Box{
+    display: flex;
+    flex-direction: column;
+}
+
+#NewPw,#ConfirmPw{
+    width:100%;
+    height: 58px;
+    padding: 0 18px;
+    font-family: 'Pretendard-Medium';
+    font-size: 16px;
+    color: #484D5A;
+    border: none;
+    border-radius: 16px;
+    background-color: #F6F8FB;
+    outline: none;
+    margin-top: 13px;
+}
+.Edit-NewPw-input-Box input::placeholder{
+    color: #CCCFDB;
+}
+
+.Edit-NewPw-input-Box span{
+    color: #A8ADBE;
+    font-family: 'Pretendard-Medium';
+    font-weight: 500;
+    font-size: 12px;
+    margin-top: 5px;
+}
+
+.Edit-NewPw-input-Box button{
+    background-color: #CCCFDB;
+    border: none;
+    outline: none;
+    border-radius: 16px;
+    width: 100%;
+    color: #FFFFFF;
+    font-family: 'Pretendard-SemiBold';
+    font-weight: 600;
+    text-align: center;
+    font-size: 18px;
+    margin-top: 35px;
+}
+
+.change-pw-btn.active {
+    background-color: #6C3FF2;
+    color: #fff;
+    cursor: pointer;
+}
