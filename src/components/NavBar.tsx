@@ -1,15 +1,22 @@
 "use client";
 
-import { useState } from "react";
-import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
+import { useRouter, usePathname } from "next/navigation";
 import "../styles/navbar.css";
 import Image from "next/image";
 
-type MenuKey = "contents" | "AI" | "profile";
+type MenuKey = "contents" | "llmTuter" | "profile";
 
 export default function NavBar() {
-    const [activeMenu, setActiveMenu] = useState<MenuKey>("contents");
     const router = useRouter();
+    const pathname = usePathname();
+    const [activeMenu, setActiveMenu] = useState<MenuKey>("llmTuter");
+
+    useEffect(() => {
+        if (pathname.startsWith("/contents")) setActiveMenu("contents");
+        else if (pathname.startsWith("/llmTuter")) setActiveMenu("llmTuter");
+        else if (pathname.startsWith("/mypage")) setActiveMenu("profile");
+    }, [pathname]);
 
     const handleClick = (menu: MenuKey) => {
         setActiveMenu(menu);
@@ -17,8 +24,8 @@ export default function NavBar() {
             case "contents":
                 router.push("/contents");
                 break;
-            case "AI":
-                // router.push("/AItuter");
+            case "llmTuter":
+                router.push("/llmTuter");
                 break;
             case "profile":
                 // router.push("/mypage");
@@ -44,10 +51,10 @@ export default function NavBar() {
                 </span>
             </div>
 
-            <div className="NavBar-menu" onClick={() => handleClick("AI")}>
+            <div className="NavBar-menu" onClick={() => handleClick("llmTuter")}>
                 <Image
                     src={
-                        activeMenu === "AI"
+                        activeMenu === "llmTuter"
                             ? "/images/AItuterActive.png"
                             : "/images/AItuter.png"
                     }
@@ -55,7 +62,7 @@ export default function NavBar() {
                     width={38}
                     height={30}
                 />
-                <span className={activeMenu === "AI" ? "active" : ""}>
+                <span className={activeMenu === "llmTuter" ? "active" : ""}>
                     AI튜터
                 </span>
             </div>
