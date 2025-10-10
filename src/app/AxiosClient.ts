@@ -2,9 +2,6 @@ import axios from "axios";
 
 const AxiosClient = axios.create({
   baseURL: "https://sw2.gyoseung.me/",
-  headers: {
-    "Content-Type": "application/json",
-  },
 });
 
 // 토큰 필요 없는 요청
@@ -15,11 +12,15 @@ const publicUrls = [
   "/join/sendChangeEmail",
   "/join/chgUserPassword",
   "/join/chkUserId",
-  "/join/authEmail"
+  "/join/authEmail",
+  "/scenario/random",
+  // "/conversation/start",
+  // "/gpt/ask",
+  // "/conversation"
 ];
 
 AxiosClient.interceptors.request.use((config) => {
-  const token = localStorage.getItem("token") || sessionStorage.getItem("token");
+  const token = localStorage.getItem("accessToken") || sessionStorage.getItem("accessToken");
   const isPublic = publicUrls.some((url) => config.url?.startsWith(url));
 
   if (!isPublic && token) {
