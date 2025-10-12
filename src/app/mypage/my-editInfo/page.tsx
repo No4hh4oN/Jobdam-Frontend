@@ -7,7 +7,6 @@ import BackNavigator from "../../../components/backButton";
 import { useState, useEffect } from "react";
 import AxiosClient from "../../AxiosClient";
 
-
 export default function EditUserInfo() {
     const router = useRouter();
 
@@ -24,24 +23,65 @@ export default function EditUserInfo() {
     const [confirmPw, setConfirmPw] = useState("");
     const [isPwFilled, setIsPwFilled] = useState(false);
 
-    // 이메일 버튼 클릭
-    const handleEmailClick = () => {
-        setIsEditingEmail(true);
-        setIsVerified(false);
-        setVerifyCode("");
-        // 비밀번호 변경 중이면 초기화
-        if (isEditingPw) {
-            setIsEditingPw(false);
-            setCurrentPw("");
-            setNewPw("");
-            setConfirmPw("");
+    // 이메일 버튼 클릭 (인증번호 요청)
+    const handleEmailClick = async () => {
+        if (!isEditingEmail) {
+            setIsEditingEmail(true);
+            setIsVerified(false);
+            setVerifyCode("");
+            if (isEditingPw) {
+                setIsEditingPw(false);
+                setCurrentPw("");
+                setNewPw("");
+                setConfirmPw("");
+            }
+            return;
+        }
+
+        try {
+            const response = await AxiosClient.post(
+                `/join/sendAuthEmail`,
+                null,
+                {
+                    params: {
+                        userEmail: email,
+                        type: "CHANGE",
+                    },
+                }
+            );
+            console.log("인증 이메일 전송 성공:", response.data);
+            alert("인증번호가 발송되었습니다.");
+        } catch (error) {
+            console.error("인증 이메일 전송 실패:", error);
+            alert("인증 이메일 전송에 실패했습니다.");
         }
     };
 
-    // 인증 확인 버튼 클릭
-    const handleVerifyClick = () => {
-        if (verifyCode.trim() !== "") {
+    // 인증 확인 버튼 클릭 (인증번호 검증)
+    const handleVerifyClick = async () => {
+        if (verifyCode.trim() === "") {
+            alert("인증번호를 입력해주세요.");
+            return;
+        }
+
+        try {
+            const response = await AxiosClient.post(
+                `/join/authEmail`,
+                null,
+                {
+                    params: {
+                        userEmail: email,
+                        authCode: verifyCode,
+                    },
+                }
+            );
+
+            console.log("이메일 인증 성공:", response.data);
+            alert("이메일 인증이 완료되었습니다!");
             setIsVerified(true);
+        } catch (error) {
+            console.error("이메일 인증 실패:", error);
+            alert("인증번호가 올바르지 않습니다. 다시 시도해주세요.");
         }
     };
 
@@ -80,32 +120,113 @@ export default function EditUserInfo() {
         return pwRegex.test(pw);
     };
 
+    // 비밀번호 변경
     const handleChangePw = async () => {
+        if (!currentPw || !newPw || !confirmPw) {
+            alert("모든 항목을 입력해주세요.");
+            return;
+        }
+        if (!isValidPassword(newPw)) {
+            alert("비밀번호 조건을 확인해주세요.");
+            return;
+        }
+        if (newPw !== confirmPw) {
+            alert("비밀번호가 일치하지 않습니다.");
+            return;
+        }
         try {
-            // 현재 비밀번호 검증 API 요청
-            const res = await AxiosClient.post("/api경로 들어감", {
-                currentPw,
-            });
-            if (!res.data.isValid) {
-                alert("현재 비밀번호가 일치하지 않습니다.");
+            const token = localStorage.getItem("accessToken");
+            if (!token) {
+                alert("로그인이 필요합니다.");
                 return;
             }
-            if (!isValidPassword(newPw)) {
-                alert("비밀번호 조건을 확인해주세요.");
-                return;
-            }
-            if (newPw !== confirmPw) {
-                alert("비밀번호가 일치하지 않습니다.");
-                return;
-            }
+
+            const response = await AxiosClient.post(
+                "/user/password/change",
+                {
+                    newPassword: newPw,  
+                },
+                {
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                    },
+                }
+            );
+            console.log("비밀번호 변경 성공:", response.data);
             alert("비밀번호가 성공적으로 변경되었습니다!");
-            handleCancelPwChange();
+            handleCancelPwChange(); // 입력 초기화
         } catch (error) {
-            console.error(error);
-            alert("비밀번호 확인 중 오류가 발생했습니다.");
+            console.error("비밀번호 변경 실패:", error);
+            alert("비밀번호 변경 중 오류가 발생했습니다.");
         }
     };
 
+
+    const [userEmail, setUserEmail] = useState<string>("");
+
+    useEffect(() => {
+        const fetchUserInfo = async () => {
+            try {
+                const token = localStorage.getItem("accessToken");
+
+                if (!token) {
+                    console.error("Access token이 없습니다.");
+                    return;
+                }
+
+                const response = await AxiosClient.get("/user/my", {
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                    },
+                });
+
+                console.log("내 정보:", response.data);
+                setUserEmail(response.data.userEmail);
+            } catch (error) {
+                console.error("내 정보 불러오기 실패:", error);
+            }
+        };
+
+        fetchUserInfo();
+    }, []);
+
+    // 이메일 변경 저장
+    const handleSaveEmail = async () => {
+        if (!isVerified) return;
+
+        try {
+            const token = localStorage.getItem("accessToken");
+            if (!token) {
+                alert("로그인이 필요합니다.");
+                return;
+            }
+
+            const userRes = await AxiosClient.get("/user/my", {
+                headers: { Authorization: `Bearer ${token}` },
+            });
+
+            const userId = userRes.data.userId;
+
+            const res = await AxiosClient.post(
+                "/join/sendChangeEmail",
+                null,
+                {
+                    params: {
+                        userEmail: email,
+                        userId: userId,
+                    },
+                }
+            );
+
+            console.log("이메일 변경 성공:", res.data);
+            alert("이메일이 성공적으로 변경되었습니다!");
+            setUserEmail(email);
+            handleCancelEmailChange();
+        } catch (error) {
+            console.error("이메일 변경 실패:", error);
+            alert("이메일 변경에 실패했습니다.");
+        }
+    };
 
     return (
         <div className="Edit-UserInfo-Container">
@@ -129,7 +250,7 @@ export default function EditUserInfo() {
                             placeholder={
                                 isEditingEmail
                                     ? "변경할 이메일을 입력해주세요"
-                                    : "aaa@aaa.com"
+                                    : userEmail || "aaa@aaa.com"
                             }
                             readOnly={!isEditingEmail}
                             onChange={(e) => setEmail(e.target.value)}
@@ -163,7 +284,16 @@ export default function EditUserInfo() {
                             </div>
                             <div className="Save-New-Email-btn">
                                 <button onClick={handleCancelEmailChange}>이메일 변경 취소</button>
-                                <button>변경 이메일 저장</button>
+                                <button
+                                    style={
+                                        isVerified
+                                            ? { backgroundColor: "#6C3FF2", color: "#ffffff" }
+                                            : {}
+                                    }
+                                    onClick={handleSaveEmail}
+                                >
+                                    변경 이메일 저장
+                                </button>
                             </div>
                         </div>
                     )}

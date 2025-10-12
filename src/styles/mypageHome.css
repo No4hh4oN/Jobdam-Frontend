@@ -80,6 +80,218 @@
     font-size: 20px;
 }
 
-.mypage-home-userInfo{
-    margin-left: -52px;
+.mypage-home-profileInfo{
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    align-items: center;
+}
+
+/* 모달 배경 */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0,0,0,0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2000;
+}
+
+/* 모달 내용 */
+.modal-content {
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    text-align: center;
+    width: 353px;
+    height: 362px;
+    border-radius: 20px;
+    box-sizing: border-box;
+    position:relative;
+    align-items: center;
+    padding-top: 23px;
+}
+
+.edit-profile-name {
+    display: flex;
+    flex-direction: column; 
+    align-items: center; 
+    gap: 5px;
+    color: #484D5A;
+    font-family: 'Pretendard-SemiBold';
+    font-weight: 600;
+    font-size: 20px;
+    margin-top: 5px;
+}
+.edit-profile-name input::placeholder{
+    color: #484D5A;
+    font-family: 'Pretendard-SemiBold';
+    font-weight: 600;
+    font-size: 20px;
+}
+
+.edit-name-input{
+    background-color: transparent;
+    border: none;
+    outline: none;
+    text-align: center;
+    color: #484D5A;
+    font-family: 'Pretendard-SemiBold';
+    font-weight: 600;
+    font-size: 20px;
+    height: 25px;
+    max-width: 100px;
+}
+
+
+.long-dash-line {
+    width: 120%;            
+    border: 1.5px dashed #CCCFDB;
+    margin-bottom: 35px;
+}
+
+.edit-modal-close{
+    position: absolute;
+    right: 20px;
+    top: 20px;
+}
+
+.edit-modal-save{
+    width: 318px;
+    height: 54px;
+    border-radius: 12px;
+    background-color: #6C3FF2;
+    border: none;
+    outline: none;
+    font-family: 'Pretendard-SemiBold';
+    font-weight: 600;
+    font-size: 18px;
+    text-align: center;
+    color: #fff;
+}
+
+.edit-profile-modal-top{
+    font-family: 'Pretendard-SemiBold';
+    font-weight: 600;
+    font-size: 18px;
+    text-align: center;
+    color: #484D5A;
+    margin-bottom: 25px;
+}
+
+.profile-img-choice-Box{
+    position: absolute;
+    right: -117px;
+    top: 95px;
+    width: 157px;
+    height: 86px;
+    border-radius: 14px;
+    background-color: #FFFFFF;
+    box-shadow: 0px 0px 20px 0px #0000001A;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: center;
+    gap: 8px;
+}
+.img-line{
+    width: 100%;
+    height: 1px;
+    background-color: #CCCFDB;
+}
+
+.take-picture,.choice-library{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    color: #484D5A;
+    font-family: "Pretendard-Medium";
+    font-weight: 500;
+    font-size: 14px;
+}
+.take-picture{
+    margin-left: 7px;
+    gap: 3px;
+}
+.choice-library{
+    margin-left: 7px;
+    gap: 5px;
+}
+
+.delete-account-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.4);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2000;
+}
+
+.delete-account-modal-content {
+    background: #fff;
+    width: 353px;
+    height: 195px;
+    border-radius: 20px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 35px;
+}
+
+.delete-account-modal-text{
+    font-family: 'Pretendard-Medium';
+    font-weight: 500;
+    font-size: 18px;
+    text-align: center;
+    color: #484D5A;
+    margin-top: 30px;
+}
+.delete-account-modal-buttons{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+}
+
+.delete-account-modal-buttons button{
+    font-family: 'Pretendard-SemiBold';
+    font-weight: 600;
+    font-size: 18px;
+    text-align: center;
+    color: #FFFFFF;
+    background-color: #CCCFDB;
+    width: 154px;
+    height: 54px;
+    border-radius: 12px;
+    outline: none;
+    border: none;
+}
+
+.delete-account-modal-buttons button:nth-of-type(2){
+    background-color: #6C3FF2;
+}
+
+.delete-account-modal-button button{
+    width: 319px;
+    height: 54px;
+    border-radius: 12px;
+    background-color: #6C3FF2;
+    font-family: 'Pretendard-SemiBold';
+    font-weight: 600;
+    font-size: 18px;
+    text-align: center;
+    outline: none;
+    border: none;
+    margin-top: 10px;
 }
