@@ -177,7 +177,8 @@ export default function Signup() {
                             name="userEmail" 
                             placeholder="이메일을 입력해주세요" 
                             value={emailVerify.userEmail}  
-                            onChange={handleEmailVerifyChange} 
+                            onChange={handleEmailVerifyChange}
+                            autoComplete="off" 
                         />
                         <button onClick={handleSendCode}>
                             {codeSent ? "재전송" : "인증번호 전송"}
@@ -193,6 +194,7 @@ export default function Signup() {
                             value={emailVerify.authCode} 
                             onChange={handleEmailVerifyChange} 
                             className={emailVerifyFailed ? "error" : ""}
+                            autoComplete="off"
                         />
                         <button
                             onClick={handleCheckEmail}
@@ -230,6 +232,7 @@ export default function Signup() {
                             value={form.userId}  
                             onChange={handleChange}
                             className={userIdCheck === false ? "error" : ""}
+                            autoComplete="off"
                         />
                         <button onClick={handleCheck}>중복확인</button>
                     </div>

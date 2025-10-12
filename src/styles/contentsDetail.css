@@ -61,7 +61,7 @@
     margin-top: 25px;
     margin-bottom: 30px;
 }
-.detail-contents-mainBox-top{
+.detail-contents-mainBox-top,.detail-main-title-sub{
     font-family: 'Pretendard-SemiBold';
     font-weight: 600;
     font-size: 18px;
@@ -70,6 +70,7 @@
 }
 .detail-contents-main-container{
     width: calc(100% - 40px);
+    margin-bottom: 40px;
 }
 
 .detail-contents-mainBox{
@@ -150,5 +151,82 @@
     height: 11px;  
     background: #D9F012; 
     z-index: -1;    
+}
+
+.detail-table-box {
+    display: flex;
+    justify-content: center;
+}
+
+.detail-file-table {
+    border-collapse: separate; 
+    border-spacing: 0;
+    border: 1px solid #c2c5cf;;
+    border-radius: 10px; 
+    overflow: hidden; 
+    width: calc(100% - 40px);
+    font-family: 'Pretendard-Medium';
+    font-weight: 500;
+    font-size: 14px;
+    text-align: center;
+    color: #484D5A;
+    margin-bottom: 30px;
+}
+
+.detail-file-table th,
+.detail-file-table td {
+    padding: 8px 12px;
+    border-bottom: 1px solid #CCCFDB;
+    border-right: 1px solid #CCCFDB;
+}
+
+/* 마지막 열에는 오른쪽 선 제거 */
+.detail-file-table th:last-child,
+.detail-file-table td:last-child {
+    border-right: none;
+}
+/* 마지막 행 아래선 제거 */
+.detail-file-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.detail-file-table thead th:not(:last-child) {
+    border-right: 1px solid #c2c5cf;
+}
+
+.detail-file-table thead {
+    background-color: #E1E4EE;
+    font-family: 'Pretendard-SemiBold';
+    font-weight: 600;
+    font-size: 14px;
+    color: #484D5A;
+}
+
+
+.detail-file-table thead tr:first-child th:first-child {
+    border-top-left-radius: 10px;
+}
+.detail-file-table thead tr:first-child th:last-child {
+    border-top-right-radius: 10px;
+}
+.detail-file-table tbody tr:last-child td:first-child {
+    border-bottom-left-radius: 10px;
+}
+.detail-file-table tbody tr:last-child td:last-child {
+    border-bottom-right-radius: 10px;
+}
+
+.contents-mainBox-sub{
+    font-family: 'Pretendard-Medium';
+    font-weight: 500;
+    font-size: 16px;
+    color: #484D5A;
+    margin-top: 7px;
+    line-height: 20px;
+    margin-bottom: 40px;
+}
+
+.contents-mainBox-sub:last-of-type {
+    margin-bottom: 0px;
 }
 

@@ -1,10 +1,9 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 "use client";
 
 import { useSearchParams } from "next/navigation";
 import { useRouter } from "next/navigation";
 import NavBar from "../../../components/NavBar";
-import BackNavigator from "@/components/backButton";
+// import BackNavigator from "@/components/backButton";
 import Image from "next/image";
 import "@/styles/contentsList.css";
 
