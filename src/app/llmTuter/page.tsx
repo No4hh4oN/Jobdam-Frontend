@@ -97,7 +97,7 @@ export default function LlmTuter() {
                         {scenarioForUI.partnerRole}와{" "}
                         {scenarioForUI.situation}
                         상황에서의 대화입니다.<br />
-                        {me?.userId && <span id="userIdTuter">{me.userId}</span>}
+                        {me?.userNm && <span id="userIdTuter">{me.userNm}</span>}
                         님은 어떻게 대화를 하실건가요?
                     </div>
                 ) : (

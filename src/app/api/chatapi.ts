@@ -52,23 +52,20 @@ export async function getMessages(conversationId: number, signal?: AbortSignal):
 }
 
 export interface MyProfile {
-  userId: string;
+  userNm: string;
   [k: string]: any;
 }
+
 function parseProfile(data: any): MyProfile {
-  const userIdCandidate =
-    data?.nickName ??
-    data?.nickname ??
-    data?.username ??
-    data?.userId; // 마지막 후보
+  const nameCandidate =
+    data?.userNm && String(data.userNm).trim() !== ""
+      ? data.userNm
+      : data?.userId && String(data.userId).trim() !== ""
+      ? data.userId
+      : "JOBDAM"; // 최종 fallback
 
-  const userId = userIdCandidate != null && String(userIdCandidate).trim() !== ""
-    ? String(userIdCandidate)
-    : "JOBDAM"; // 최종 fallback
-
-  return { userId, ...data };
+  return { userNm: String(nameCandidate), ...data };
 }
-
 export async function getMyProfile(signal?: AbortSignal): Promise<MyProfile> {
   const res = await AxiosClient.get("/user/my", {
     signal,

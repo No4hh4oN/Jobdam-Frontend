@@ -368,3 +368,5 @@ export default function DetailContents() {
         </div>
     );
 }
+
+export const dynamic = "force-dynamic";

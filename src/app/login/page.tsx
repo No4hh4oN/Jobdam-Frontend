@@ -42,19 +42,17 @@ export default function Login() {
                     withCredentials: true,
                 }
             );
-            console.log(response)
-            localStorage.setItem("accessToken", response.data.accessToken);
-            alert("로그인 성공!")
 
             const token = response.data.accessToken;
             localStorage.setItem("accessToken", token);
             alert("로그인 성공");
-            // router.push("/");
+            router.push("/llmTuter");
         } catch (error) {
             console.error("로그인 실패", error);
             alert("로그인 실패");
         }
     };
+
 
     return (
         <div className="LoginScreen">

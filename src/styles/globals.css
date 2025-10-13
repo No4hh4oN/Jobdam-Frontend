@@ -59,6 +59,13 @@ body {
   font-style: normal;
 }
 
+@font-face {
+    font-family: 'Aggravo';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/SBAggroM.woff') format('woff');
+    font-weight: 500;
+    font-display: swap;
+}
+
 * {
   box-sizing: border-box;
   padding: 0;
