@@ -35,9 +35,9 @@ export default function Login() {
     const handleLogin = async () => {
         try {
             const response = await AxiosClient.post("/login", {
-                    userId: form.userId,
-                    userPassword: form.password,
-                },
+                userId: form.userId,
+                userPassword: form.password,
+            },
                 {
                     withCredentials: true,
                 }
@@ -46,6 +46,10 @@ export default function Login() {
             localStorage.setItem("accessToken", response.data.accessToken);
             alert("로그인 성공!")
 
+            const token = response.data.accessToken;
+            localStorage.setItem("accessToken", token);
+            alert("로그인 성공");
+            // router.push("/");
         } catch (error) {
             console.error("로그인 실패", error);
             alert("로그인 실패");
