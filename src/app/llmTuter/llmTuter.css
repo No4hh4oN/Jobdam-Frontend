@@ -1,26 +1,259 @@
 /* app/llmTuter/llmTuter.css */
-.llmTuter { display:flex; flex-direction:column; min-height:100vh; font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif; color: #000;}
-.tuter-header { display:flex; justify-content:space-between; align-items:center; padding:12px 16px; border-bottom:1px solid #e5e5e5; background:#fafafa; }
-.tuter-header .left { display:flex; gap:12px; align-items:center; }
-.crumb { font-size:12px; color:#666; }
-button { cursor:pointer; border-radius:8px; padding:8px 12px; border:1px solid #ddd; background:#fff; }
-button.primary { background:#111; color:#fff; border-color:#111; }
-button.primary:disabled { opacity:.6; cursor:default; }
-button.link { border:none; background:transparent; color:#0066cc; padding:0; }
-button.ghost { background:#fff; }
-.tuter-main { display:flex; gap:16px; padding:16px; flex:1; }
-.error { background:#fdeaea; color:#b42318; border:1px solid #f3c2c0; padding:10px 12px; border-radius:8px; margin-bottom:12px; }
+.llmTuter {
+    display: flex;
+    flex-direction: column;
+    height: calc(100% - 99px);
+    padding-bottom: 30px;
+    color: #000;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
 
-.scenario-box { width:320px; min-width:280px; border:1px solid #eee; border-radius:10px; padding:14px; background:#fff; height:max-content; color: #000;}
-.scenario-box h3 { margin:0 0 8px 0; font-size:14px; }
-.scenario-box ul { margin:0; padding-left:16px; }
+.tuter-header {
+    display: flex;
+}
 
-.chat-box { flex:1; display:flex; flex-direction:column; border:1px solid #eee; border-radius:10px; background:#fff; }
-.messages { flex:1; padding:16px; overflow:auto; display:flex; flex-direction:column; gap:8px; }
-.bubble { max-width:70%; padding:10px 12px; border-radius:12px; line-height:1.4; white-space:pre-wrap; word-break:break-word; }
-.bubble.user { align-self:flex-end; background:#e8f0fe; border:1px solid #d0dcff; }
-.bubble.bot { align-self:flex-start; background:#f4f4f5; border:1px solid #e4e4e7; }
-.bubble.system { align-self:center; background:#fff7ed; border:1px solid #ffedd5; }
+.tuter-main {
+    display: flex;
+    flex-direction: column;
+    padding: 0 21px;
+}
 
-.composer { display:flex; gap:8px; padding:12px; border-top:1px solid #eee; }
-.composer input { flex:1; border:1px solid #ddd; border-radius:8px; padding:10px 12px; font-size:14px; }
+.crumb {
+    margin-top: 76px;
+    font-family: "Pretendard-SemiBold";
+    font-size: 24px;
+}
+
+.scenariro {
+    margin-top: 34px;
+    min-height: 72px;
+    font-family: "Pretendard-SemiBold";
+    font-size: 20px;
+    z-index: 1;
+}
+
+#userIdTuter {
+    color: #6C3FF2;
+}
+
+.scenarioImg {
+    margin-top: -15px;
+    display: flex;
+    justify-self: center;
+    align-self: center;
+    z-index: 0;
+}
+
+.error {
+    background: #fdeaea;
+    color: #b42318;
+    border: 1px solid #f3c2c0;
+    padding: 10px 12px;
+    border-radius: 8px;
+    margin-bottom: 12px;
+}
+
+.goChat {
+    height: 64px;
+    background-color: #6C3FF2;
+    border-radius: 16px;
+    font-family: "Pretendard-SemiBold";
+    font-size: 20px;
+    color: #FFFFFF;
+    border: none;
+    outline: none;
+    margin-top: -15px;
+    z-index: 1;
+}
+
+.hotContents-Title {
+    margin-top: 58px;
+    font-family: "Pretendard-SemiBold";
+    font-size: 24px;
+    color: #171C20;
+}
+
+.hotContentsList {
+    margin-top: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.hotContents {
+    display: flex;
+    justify-content: flex-start;
+    gap: 14px;
+    align-items: center
+}
+
+.hotContentImg-Wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 70px;
+    height: 70px;
+    border-radius: 9px;
+}
+
+#wrapper1 {
+    background-color: #E5F8FF;
+}
+
+#wrapper2 {
+    background-color: #E2F2DD;
+}
+
+.hotContent {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.hotContent-title {
+
+    font-family: "Pretendard-SemiBold";
+    font-size: 16px;
+    color: #484D5A;
+}
+
+.hotContent-body {
+    font-family: "Pretendard-Medium";
+    font-size: 14px;
+    color: #A8ADBE;
+}
+
+
+
+
+
+.scenario-box {
+    width: 320px;
+    min-width: 280px;
+    border: 1px solid #eee;
+    border-radius: 10px;
+    padding: 14px;
+    background: #fff;
+    height: max-content;
+    color: #000;
+}
+
+.scenario-box h3 {
+    margin: 0 0 8px 0;
+    font-size: 14px;
+}
+
+.scenario-box ul {
+    margin: 0;
+    padding-left: 16px;
+}
+
+.chat-box {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #eee;
+    border-radius: 10px;
+    background: #fff;
+}
+
+.messages {
+    flex: 1;
+    padding: 16px;
+    overflow: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.bubble {
+    max-width: 70%;
+    padding: 10px 12px;
+    border-radius: 12px;
+    line-height: 1.4;
+    white-space: pre-wrap;
+    word-break: break-word;
+}
+
+.bubble.user {
+    align-self: flex-end;
+    background: #e8f0fe;
+    border: 1px solid #d0dcff;
+}
+
+.bubble.bot {
+    align-self: flex-start;
+    background: #f4f4f5;
+    border: 1px solid #e4e4e7;
+}
+
+.bubble.system {
+    align-self: center;
+    background: #fff7ed;
+    border: 1px solid #ffedd5;
+}
+
+.composer {
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    display: flex;
+    gap: 8px;
+    border-top: 1px solid #eee;
+}
+
+.composer input {
+    flex: 1;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 10px 12px;
+    font-size: 14px;
+}
+
+.loadingWrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 72px;
+    margin-top: 34px;
+}
+
+.typing {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    height: 18px;
+}
+
+.typing i {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #A8ADBE;
+    opacity: .5;
+    animation: typing-bounce 1.2s infinite ease-in-out;
+}
+
+.typing i:nth-child(2) {
+    animation-delay: .15s;
+}
+
+.typing i:nth-child(3) {
+    animation-delay: .3s;
+}
+
+@keyframes typing-bounce {
+
+    0%,
+    80%,
+    100% {
+        transform: translateY(0);
+        opacity: .5;
+    }
+
+    40% {
+        transform: translateY(-4px);
+        opacity: 1;
+    }
+}

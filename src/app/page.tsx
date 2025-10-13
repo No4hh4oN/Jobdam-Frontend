@@ -1,19 +1,26 @@
 // 메인 홈화면
-
 'use client';
 
 import { useRouter } from 'next/navigation';
+import Image from 'next/image';
+import '../styles/home.css';
 
 export default function Home() {
   const router = useRouter();
 
   return (
-    <div>
-      <button onClick={() => router.push('/login')}>로그인</button>
-      <button onClick={() => router.push('/signup')}>회원가입</button>
-      <button onClick={() => router.push('/find-id')}>아이디 찾기</button>
-      <button onClick={() => router.push('/find-pw')}>비밀번호 찾기</button>
-      <button onClick={() => router.push('/llmTuter')}>홈화면</button>
+    <div className='Home' onClick={() => router.push('/login')}>
+      <Image className='logo' src="/images/jobdam.png" alt='logo' width={149.5} height={149.5}></Image>
+      <div>
+        <p className='intro'>
+          센스있는<br />
+          사회생활을 위해
+        </p>
+        <span className='jobdam'>
+          잡담
+        </span>
+        <p className='Touch'>화면을 터치해주세요.</p>
+      </div>
     </div>
   );
 }

@@ -1,0 +1,432 @@
+.chat {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    background-color: #F3F4F8;
+    height: 100vh;
+    --note-sheet-h: 30vh;
+}
+
+.chat-header {
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 5;
+    background-color: #FFFFFF;
+}
+
+/* Tabs */
+.tabs {
+    margin-top: 76px;
+    padding-bottom: 12px;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.tab {
+    font-family: 'Pretendard-Medium';
+    font-size: 22px;
+    background-color: transparent;
+    color: #828797;
+    border: none;
+    cursor: pointer;
+    padding-bottom: 8px;
+}
+
+.tab.is-active {
+    font-family: 'Pretendard-SemiBold';
+    font-size: 22px;
+    color: #171C20;
+    border: none;
+    background-color: transparent;
+    border-bottom: 2px solid #6C3FF2;
+    padding-bottom: 8px;
+}
+
+
+.chat-main {
+    height: calc(100vh - 206px);
+    background-color: #F3F4F8;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 12px;
+    overflow: auto;
+}
+
+.chat-main.note {
+    padding-bottom: calc(var(--note-sheet-h) + 16px);
+    height: calc(100vh - 124px);
+    background-color: #F3F4F8;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 12px;
+    overflow: auto;
+}
+
+.messages {
+    overflow: visible;
+    contain: none;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    background: transparent;
+}
+
+/* Bubbles */
+.group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.group.user {
+    align-items: flex-end
+}
+
+.group.bot {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start
+}
+
+.bubble {
+    background-color: #E1E4EE;
+    max-width: 78%;
+    padding: 10px 12px;
+    border-radius: var(--radius);
+    white-space: pre-wrap;
+    word-break: break-word;
+
+}
+
+.bubble.user {
+    background-color: #FFFFFF;
+    border-radius: 15px;
+}
+
+.bubble.bot {
+    background-color: #E1E4EE;
+    border-radius: 15px;
+}
+
+.bubble__text {
+    font-family: 'Pretendard-Medium';
+    font-size: 22px;
+    color: #171C20;
+    font-size: 14px
+}
+
+
+.composer {
+    position: relative;
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    padding: 0 20px;
+    padding-bottom: 34px !important;
+
+}
+
+.composer input {
+    position: relative;
+    width: 100%;
+    height: 48px;
+    border-radius: 15px;
+    border: none;
+    outline: none;
+    font-family: 'Pretendard-Medium';
+    font-size: 14px;
+    color: #171C20;
+    background-color: #FFFFFF;
+    padding-left: 15px;
+    padding-right: 50px;
+}
+
+.composer input::placeholder {
+    color: #A8ADBE;
+}
+
+.composer .send {
+    position: absolute;
+    right: 30px;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    border: none;
+    outline: none;
+    background-color: #A8ADBE;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.error {
+    background: #fff2f0;
+    color: #b42318;
+    border: 1px solid #ffd0cc;
+    padding: 8px 12px;
+    border-radius: 10px;
+    margin: 8px auto;
+    max-width: 720px;
+}
+
+
+/* ===== NOTE Mode: clickable ===== */
+.bubble.user.note-clickable {
+    cursor: pointer;
+}
+
+.bubble.user.note-clickable:active {
+    transform: translateY(1px);
+}
+
+/* ===== Bottom Sheet (항상 표시) ===== */
+.note-sheet {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: var(--note-sheet-h);
+    background: #fff;
+    border-top-left-radius: 16px;
+    border-top-right-radius: 16px;
+    box-shadow: 0 -8px 24px rgba(0, 0, 0, 0.08);
+    display: grid;
+    grid-template-rows: 49px 80px 1fr;
+    /* grip, header, body */
+    will-change: height;
+}
+
+.note-grip {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: ns-resize;
+    touch-action: none;
+    padding-top: 8px;
+    height: 41px;
+}
+
+.note-sheet__header {
+    position: relative;
+    margin-top: 20px;
+    height: 48px;
+    display: flex;
+    flex-direction: column;
+    padding: 0 16px;
+    white-space: nowrap;
+}
+
+.sheet__header__1 {
+    font-family: 'Pretendard-Medium';
+    font-size: 12px;
+    color: #171C20;
+}
+
+.sheet__header__1 span {
+    color: #6C3FF2;
+}
+
+.sheet__header__2 {
+    margin-top: 12px;
+    font-family: 'Pretendard-SemiBold';
+    font-size: 22px;
+    color: #171C20;
+}
+
+.sheet__header__2 span {
+    color: #FF4444;
+}
+
+.note-sheet__body {
+    position: relative;
+    overflow: auto;
+}
+
+.note-empty {
+    text-align: center;
+    color: #666;
+    padding: 8px 0;
+}
+
+.note-empty.small {
+    color: #888;
+    padding: 4px 0;
+}
+
+/* 섹션/리스트 */
+.note-sections {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 16px;
+}
+
+.note-section {
+    background: transparent;
+    overflow: hidden;
+}
+
+.note-section__title {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 8px;
+    align-items: center;
+    padding: 10px 12px;
+    border-bottom: 1px solid #f2f2f2;
+    background: #fafafa;
+}
+
+.note-section__chip {
+    min-width: 24px;
+    height: 24px;
+    border-radius: 999px;
+    background: #111;
+    color: #fff;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: 700;
+    padding: 0 8px;
+}
+
+.note-section__text {
+    color: #333;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.note-list {
+    list-style: none;
+    margin: 0;
+    display: grid;
+    gap: 12px;
+}
+
+.note-item {
+    padding: 12px;
+    background: #fff;
+}
+
+.note-item__label {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 5px;
+
+    font-family: 'Pretendard-SemiBold';
+    font-size: 20px;
+    color: #171C20;
+}
+
+.note-item__label i {
+    display: block;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background-color: #FF4444;
+}
+
+.note-item__editLabel {
+    margin-top: 13px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 5px;
+    font-family: 'Pretendard-SemiBold';
+    font-size: 20px;
+    color: #171C20;
+}
+
+.note-item__editLabel i {
+    display: block;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background-color: #6C3FF2;
+}
+
+.note-item__orig {
+    margin-top: 7px;
+    padding: 0 12px;
+    font-family: 'Pretendard-Medium';
+    font-size: 14px;
+    color: #171C20;
+    white-space: pre-wrap;
+}
+
+.note-item__corr {
+    margin-top: 7px;
+    padding: 0 12px;
+    white-space: pre-wrap;
+    font-family: 'Pretendard-Medium';
+    font-size: 14px;
+    color: #171C20;
+}
+
+.note-item__exp {
+    margin-top: 28px;
+    padding: 0 12px;
+    text-align: center;
+    font-family: 'Pretendard-Medium';
+    font-size: 14px;
+    color: #6C3FF2;
+    white-space: pre-wrap;
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 480px) {
+    .bubble {
+        max-width: 65%;
+    }
+
+    .group {
+        max-width: 100%;
+    }
+}
+
+.typing {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    height: 18px;
+}
+
+.typing i {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #A8ADBE;
+    opacity: .5;
+    animation: typing-bounce 1.2s infinite ease-in-out;
+}
+
+.typing i:nth-child(2) {
+    animation-delay: .15s;
+}
+
+.typing i:nth-child(3) {
+    animation-delay: .30s;
+}
+
+@keyframes typing-bounce {
+
+    0%,
+    80%,
+    100% {
+        transform: translateY(0);
+        opacity: .5;
+    }
+
+    40% {
+        transform: translateY(-4px);
+        opacity: 1;
+    }
+}
