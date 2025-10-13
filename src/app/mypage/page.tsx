@@ -16,6 +16,7 @@ export default function Mypage() {
     const [userId, setUserId] = useState<string>("");
     const [userNm, setUserNm] = useState<string>("");
     const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
+    const [isLoading, setIsLoading] = useState<boolean>(true);
     const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
     const [showBox, setShowBox] = useState<boolean>(false);
     const [isDeleteModalOpen, setIsDeleteModalOpen] = useState<boolean>(false);
@@ -32,40 +33,42 @@ export default function Mypage() {
     // 프로필 이미지 불러오기
     useEffect(() => {
         const fetchUserInfo = async () => {
+            setIsLoading(true); // ✅ 시작 시 true
             try {
                 const token = localStorage.getItem("accessToken");
                 if (!token) {
                     setIsLoggedIn(false);
+                    setIsLoading(false);
                     return;
                 }
 
                 const response = await AxiosClient.get("/user/my", {
                     headers: { Authorization: `Bearer ${token}` },
                 });
-                console.log("내 정보:", response.data);
 
                 setUserEmail(response.data.userEmail);
                 setUserId(response.data.userId);
                 setUserNm(response.data.userNm);
                 setIsLoggedIn(true);
 
-                // 프로필 이미지 ID 확인 후 URL 요청
                 if (response.data.profileImageId) {
                     const imageRes = await AxiosClient.get(`/image/${response.data.profileImageId}`, {
                         headers: { Authorization: `Bearer ${token}` },
                     });
-                    console.log("이미지 응답:", imageRes.data);
                     setProfileImage(imageRes.data.url);
                     setSelectedImage(imageRes.data.url);
                 }
             } catch (error) {
                 console.error("내 정보 불러오기 실패:", error);
                 setIsLoggedIn(false);
+            } finally {
+                setIsLoading(false); // ✅ 끝나면 false
             }
         };
 
         fetchUserInfo();
     }, []);
+
 
     const openModal = () => setIsModalOpen(true);
     const closeModal = () => {
@@ -201,7 +204,15 @@ export default function Mypage() {
         <div className="mypage-home">
             <div className="mypage-home-title">마이페이지</div>
             <div className="mypage-home-mainBox">
-                {isLoggedIn ? (
+                {isLoading ? (
+                    // 로딩 중일 때
+                    <div className="loadingWrapper2">
+                        <div className="typing">
+                            <i></i><i></i><i></i>
+                        </div>
+                    </div>
+                ) : isLoggedIn ? (
+                    // 로그인 후
                     <div className="mypage-home-menu">
                         <div className="mypage-home-profileInfo">
                             <img
@@ -219,6 +230,7 @@ export default function Mypage() {
                         <button onClick={openModal}>프로필 편집</button>
                     </div>
                 ) : (
+                    // 비로그인 상태
                     <div className="mypage-home-menu">
                         <img
                             src="/images/mypageProfile.png"

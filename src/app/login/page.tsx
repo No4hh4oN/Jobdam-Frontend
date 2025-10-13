@@ -32,6 +32,13 @@ export default function Login() {
         setForm((prev) => ({ ...prev, [name]: value }));
     };
 
+    const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+        if (e.key === "Enter") {
+            e.preventDefault(); // 기본 submit 방지
+            handleLogin();
+        }
+    };
+
     const handleLogin = async () => {
         try {
             const response = await AxiosClient.post("/login", {
@@ -59,9 +66,11 @@ export default function Login() {
             <BackNavigator />
             <div className="Login-Title">로그인</div>
             <div className="Login-Box">
-                <input id="userId" type="text" name="userId" placeholder="아이디를 입력해주세요" autoComplete="off" value={form.userId} onChange={handleChange} />
+                <input id="userId" type="text" name="userId" placeholder="아이디를 입력해주세요" autoComplete="off" value={form.userId} onChange={handleChange} 
+                    onKeyDown={handleKeyDown}/>
 
-                <input id="password" type="password" name="password" placeholder="비밀번호를 입력해주세요" autoComplete="off" value={form.password} onChange={handleChange} />
+                <input id="password" type="password" name="password" placeholder="비밀번호를 입력해주세요" autoComplete="off" value={form.password} onChange={handleChange} 
+                    onKeyDown={handleKeyDown}/>
 
                 <div className="Find-Signup-Form">
                     <span onClick={() => router.push('/find-id')}>아이디 찾기</span>

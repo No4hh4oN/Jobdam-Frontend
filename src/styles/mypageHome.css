@@ -1,9 +1,10 @@
-.mypage-home{
-    width: 100%;     
+.mypage-home {
+    width: 100%;
     background-color: #fff;
     margin-top: 78px;
 }
-.mypage-home-title{
+
+.mypage-home-title {
     font-family: 'Pretendard-SemiBold';
     font-weight: 600;
     font-size: 24px;
@@ -12,13 +13,14 @@
     padding-bottom: 35px;
 }
 
-.mypage-home-mainBox{
+.mypage-home-mainBox {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-.mypage-home-menu,.mypage-home-menu-user{
+.mypage-home-menu,
+.mypage-home-menu-user {
     border-radius: 16px;
     padding: 24px;
     background-color: #F6F8FB;
@@ -26,21 +28,22 @@
     box-sizing: border-box;
 }
 
-.mypage-home-menu{
+.mypage-home-menu {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     margin-bottom: 13px;
     align-items: center;
 }
-.mypage-home-menu span{
+
+.mypage-home-menu span {
     font-family: 'Pretendard-SemiBold';
     font-weight: 600;
     font-size: 16px;
     color: #484D5A;
 }
 
-.mypage-home-menu-user{
+.mypage-home-menu-user {
     font-family: 'Pretendard-SemiBold';
     font-weight: 600;
     font-size: 16px;
@@ -48,7 +51,7 @@
     margin-bottom: 13px;
 }
 
-.mypage-home-menu button{
+.mypage-home-menu button {
     width: 79px;
     height: 34px;
     border-radius: 7px;
@@ -65,7 +68,8 @@
     color: #6C3FF2;
     background-color: #DDD1FF;
 }
-.mypage-home-userInfo span{
+
+.mypage-home-userInfo span {
     display: flex;
     flex-direction: column;
     color: #A8ADBE;
@@ -73,14 +77,15 @@
     font-weight: 500;
     font-size: 14px;
 }
-.mypage-home-userInfo span:nth-of-type(1){
+
+.mypage-home-userInfo span:nth-of-type(1) {
     color: #484D5A;
     font-family: 'Pretendard-SemiBold';
     font-weight: 600;
     font-size: 20px;
 }
 
-.mypage-home-profileInfo{
+.mypage-home-profileInfo {
     display: flex;
     flex-direction: row;
     gap: 10px;
@@ -94,7 +99,7 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: rgba(0,0,0,0.5);
+    background-color: rgba(0, 0, 0, 0.5);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -112,15 +117,15 @@
     height: 362px;
     border-radius: 20px;
     box-sizing: border-box;
-    position:relative;
+    position: relative;
     align-items: center;
     padding-top: 23px;
 }
 
 .edit-profile-name {
     display: flex;
-    flex-direction: column; 
-    align-items: center; 
+    flex-direction: column;
+    align-items: center;
     gap: 5px;
     color: #484D5A;
     font-family: 'Pretendard-SemiBold';
@@ -128,14 +133,15 @@
     font-size: 20px;
     margin-top: 5px;
 }
-.edit-profile-name input::placeholder{
+
+.edit-profile-name input::placeholder {
     color: #484D5A;
     font-family: 'Pretendard-SemiBold';
     font-weight: 600;
     font-size: 20px;
 }
 
-.edit-name-input{
+.edit-name-input {
     background-color: transparent;
     border: none;
     outline: none;
@@ -150,18 +156,18 @@
 
 
 .long-dash-line {
-    width: 120%;            
+    width: 120%;
     border: 1.5px dashed #CCCFDB;
     margin-bottom: 35px;
 }
 
-.edit-modal-close{
+.edit-modal-close {
     position: absolute;
     right: 20px;
     top: 20px;
 }
 
-.edit-modal-save{
+.edit-modal-save {
     width: 318px;
     height: 54px;
     border-radius: 12px;
@@ -175,7 +181,7 @@
     color: #fff;
 }
 
-.edit-profile-modal-top{
+.edit-profile-modal-top {
     font-family: 'Pretendard-SemiBold';
     font-weight: 600;
     font-size: 18px;
@@ -184,7 +190,7 @@
     margin-bottom: 25px;
 }
 
-.profile-img-choice-Box{
+.profile-img-choice-Box {
     position: absolute;
     right: -117px;
     top: 95px;
@@ -199,13 +205,15 @@
     justify-content: center;
     gap: 8px;
 }
-.img-line{
+
+.img-line {
     width: 100%;
     height: 1px;
     background-color: #CCCFDB;
 }
 
-.take-picture,.choice-library{
+.take-picture,
+.choice-library {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -214,11 +222,13 @@
     font-weight: 500;
     font-size: 14px;
 }
-.take-picture{
+
+.take-picture {
     margin-left: 7px;
     gap: 3px;
 }
-.choice-library{
+
+.choice-library {
     margin-left: 7px;
     gap: 5px;
 }
@@ -229,7 +239,7 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0,0,0,0.4);
+    background: rgba(0, 0, 0, 0.4);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -249,7 +259,7 @@
     gap: 35px;
 }
 
-.delete-account-modal-text{
+.delete-account-modal-text {
     font-family: 'Pretendard-Medium';
     font-weight: 500;
     font-size: 18px;
@@ -257,14 +267,15 @@
     color: #484D5A;
     margin-top: 30px;
 }
-.delete-account-modal-buttons{
+
+.delete-account-modal-buttons {
     display: flex;
     flex-direction: row;
     align-items: center;
     gap: 10px;
 }
 
-.delete-account-modal-buttons button{
+.delete-account-modal-buttons button {
     font-family: 'Pretendard-SemiBold';
     font-weight: 600;
     font-size: 18px;
@@ -278,11 +289,11 @@
     border: none;
 }
 
-.delete-account-modal-buttons button:nth-of-type(2){
+.delete-account-modal-buttons button:nth-of-type(2) {
     background-color: #6C3FF2;
 }
 
-.delete-account-modal-button button{
+.delete-account-modal-button button {
     width: 319px;
     height: 54px;
     border-radius: 12px;
@@ -294,4 +305,57 @@
     outline: none;
     border: none;
     margin-top: 10px;
+}
+
+.loadingWrapper2 {
+    border-radius: 16px;
+    padding: 24px;
+    background-color: #F6F8FB;
+    width: calc(100% - 40px);
+    height: 53px;
+    box-sizing: border-box;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 13px;
+}
+
+.typing {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    height: 18px;
+}
+
+.typing i {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #A8ADBE;
+    opacity: .5;
+    animation: typing-bounce 1.2s infinite ease-in-out;
+}
+
+.typing i:nth-child(2) {
+    animation-delay: .15s;
+}
+
+.typing i:nth-child(3) {
+    animation-delay: .3s;
+}
+
+@keyframes typing-bounce {
+
+    0%,
+    80%,
+    100% {
+        transform: translateY(0);
+        opacity: .5;
+    }
+
+    40% {
+        transform: translateY(-4px);
+        opacity: 1;
+    }
 }

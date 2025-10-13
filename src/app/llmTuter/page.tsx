@@ -101,7 +101,13 @@ export default function LlmTuter() {
                         님은 어떻게 대화를 하실건가요?
                     </div>
                 ) : (
-                    <p>시나리오 정보를 불러오는 중...</p>
+                    <div className="loadingWrapper">
+                        <div className="typing">
+                            <i></i>
+                            <i></i>
+                            <i></i>
+                        </div>
+                    </div>
                 )}
                 <Image className="scenarioImg" src="/images/scenario.png" alt="시나리오" width={393} height={272} />
                 <button className="goChat" onClick={goChat} disabled={!scenarioForUI || loading}>시작하기</button>
@@ -110,7 +116,8 @@ export default function LlmTuter() {
                 <div className="hotContentsList">
                     <div className="hotContents">
                         <span id="wrapper1" className="hotContentImg-Wrapper">
-                            <Image src="/images/cultureImg/menu1.png" alt="상황1" width={32} height={32} />
+                            <Image src="/images/cultureImg/menu1.png" alt="상황1" width={32} height={32}
+                                unoptimized />
                         </span>
                         <div className="hotContent">
                             <span className="hotContent-title">첫 출근 전 준비 체크리스트</span>
