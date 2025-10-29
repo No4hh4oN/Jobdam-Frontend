@@ -1,7 +1,7 @@
 "use client";
 
 import { Suspense } from "react";
-import DetailInner from "./DetailInner";
+import DetailInner from "./detailInner";
 
 export default function DetailPage() {
   return (

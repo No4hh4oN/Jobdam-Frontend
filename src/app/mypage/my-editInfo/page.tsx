@@ -23,7 +23,8 @@ export default function EditUserInfo() {
     const [confirmPw, setConfirmPw] = useState("");
     const [isPwFilled, setIsPwFilled] = useState(false);
 
-    // 이메일 버튼 클릭 (인증번호 요청)
+    const [isSendingCode, setIsSendingCode] = useState(false);
+
     const handleEmailClick = async () => {
         if (!isEditingEmail) {
             setIsEditingEmail(true);
@@ -38,22 +39,27 @@ export default function EditUserInfo() {
             return;
         }
 
+        if (!email) {
+            alert("이메일을 입력해주세요.");
+            return;
+        }
+
+        setIsSendingCode(true); // 전송 시작
+
         try {
-            const response = await AxiosClient.post(
-                `/join/sendAuthEmail`,
-                null,
-                {
-                    params: {
-                        userEmail: email,
-                        type: "CHANGE",
-                    },
-                }
-            );
+            const response = await AxiosClient.post(`/join/sendAuthEmail`, null, {
+                params: {
+                    userEmail: email,
+                    type: "CHANGE",
+                },
+            });
             console.log("인증 이메일 전송 성공:", response.data);
-            alert("인증번호가 발송되었습니다.");
+            alert("인증번호가 발송되었습니다."); // 전송 완료 후 알림
         } catch (error) {
             console.error("인증 이메일 전송 실패:", error);
             alert("인증 이메일 전송에 실패했습니다.");
+        } finally {
+            setIsSendingCode(false); // 전송 종료
         }
     };
 
@@ -190,14 +196,18 @@ export default function EditUserInfo() {
         fetchUserInfo();
     }, []);
 
-    // 이메일 변경 저장
+    const [isSaving, setIsSaving] = useState(false);
+
     const handleSaveEmail = async () => {
         if (!isVerified) return;
+
+        setIsSaving(true); // 저장 시작
 
         try {
             const token = localStorage.getItem("accessToken");
             if (!token) {
                 alert("로그인이 필요합니다.");
+                setIsSaving(false);
                 return;
             }
 
@@ -225,8 +235,11 @@ export default function EditUserInfo() {
         } catch (error) {
             console.error("이메일 변경 실패:", error);
             alert("이메일 변경에 실패했습니다.");
+        } finally {
+            setIsSaving(false); // 저장 종료
         }
     };
+
 
     return (
         <div className="Edit-UserInfo-Container">
@@ -250,14 +263,18 @@ export default function EditUserInfo() {
                             placeholder={
                                 isEditingEmail
                                     ? "변경할 이메일을 입력해주세요"
-                                    : userEmail || "aaa@aaa.com"
+                                    : userEmail
                             }
                             readOnly={!isEditingEmail}
                             onChange={(e) => setEmail(e.target.value)}
                             autoComplete="off"
                         />
                         <button onClick={handleEmailClick}>
-                            {isEditingEmail ? "인증번호 받기" : "이메일 변경"}
+                            {isSendingCode
+                                ? "전송중..."
+                                : isEditingEmail
+                                ? "재전송"
+                                : "이메일 변경"}
                         </button>
                     </div>
 
@@ -291,8 +308,9 @@ export default function EditUserInfo() {
                                             : {}
                                     }
                                     onClick={handleSaveEmail}
+                                    disabled={!isVerified || isSaving} // 저장 중에는 클릭 방지
                                 >
-                                    변경 이메일 저장
+                                    {isSaving ? "저장중..." : "변경 이메일 저장"}
                                 </button>
                             </div>
                         </div>

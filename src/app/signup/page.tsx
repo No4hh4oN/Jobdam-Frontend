@@ -55,22 +55,28 @@ export default function Signup() {
         setEmailVerify((prev) => ({ ...prev, [name]: value }));
     }
 
+    const [isSendingCode, setIsSendingCode] = useState(false); // 인증번호 전송 로딩 상태
+
     // 이메일 인증번호 전송
-    const handleSendCode = async ()=>{
-        try{
+    const handleSendCode = async () => {
+        if (!emailVerify.userEmail) return; // 이메일 입력 안되었으면 return
+        setIsSendingCode(true); // 로딩 시작
+        try {
             const res = await AxiosClient.post(`/join/sendAuthEmail`, null, {
                 params: {
                     userEmail: emailVerify.userEmail,
                     type: "",
                 },
             });
-            console.log(res)
-            // alert("인증번호가 이메일로 전송되었습니다.");
-            setCodeSent(true);
-        }catch(error){
-            console.error(error)
+            console.log(res);
+            setCodeSent(true); 
+        } catch (error) {
+            console.error(error);
+        } finally {
+            setIsSendingCode(false); 
         }
-    }
+    };
+
 
     // 이메일 인증 확인
     const handleCheckEmail = async () => {
@@ -180,8 +186,12 @@ export default function Signup() {
                             onChange={handleEmailVerifyChange}
                             autoComplete="off" 
                         />
-                        <button onClick={handleSendCode}>
-                            {codeSent ? "재전송" : "인증번호 전송"}
+                        <button onClick={handleSendCode} disabled={isSendingCode}>
+                            {isSendingCode 
+                                ? "전송중..." 
+                                : codeSent 
+                                ? "재전송" 
+                                : "인증번호 전송"}
                         </button>
                     </div>
 

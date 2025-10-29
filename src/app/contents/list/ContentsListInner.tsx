@@ -17,12 +17,13 @@ export default function ContentsListInner() {
         router.back();
     };
 
-    // 클릭 핸들러 예시
+    // 추후 콘텐츠 추가되면 수정
     const handleClick = (index: number) => {
+        if (!type) return;
         if (index === 0) {
-            router.push(`/contents/detail?type=${type}&id=${index}`);
+            const actualId = 1 + 0 * 5; // 첫 항목 → 1
+            router.push(`/contents/detail?type=${type}&id=${actualId}`);
         } else {
-            // 나머지 클릭 → 공개 예정
             alert("공개 예정입니다.");
         }
     };

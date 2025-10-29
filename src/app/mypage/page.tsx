@@ -33,7 +33,7 @@ export default function Mypage() {
     // 프로필 이미지 불러오기
     useEffect(() => {
         const fetchUserInfo = async () => {
-            setIsLoading(true); // ✅ 시작 시 true
+            setIsLoading(true); 
             try {
                 const token = localStorage.getItem("accessToken");
                 if (!token) {
@@ -62,7 +62,7 @@ export default function Mypage() {
                 console.error("내 정보 불러오기 실패:", error);
                 setIsLoggedIn(false);
             } finally {
-                setIsLoading(false); // ✅ 끝나면 false
+                setIsLoading(false); // 끝나면 false
             }
         };
 
@@ -119,7 +119,7 @@ export default function Mypage() {
         { text: "회원탈퇴", action: openDeleteModal },
     ];
 
-    // 🔹 이름/이미지 저장
+    // 이름/이미지 저장
     const handleNameSave = async () => {
         console.log("handleNameSave 호출됨");
 
@@ -246,11 +246,11 @@ export default function Mypage() {
                     </div>
                 )}
 
-                <div className="mypage-home-menu">
+                <div className="mypage-home-menu" onClick={() => router.push("/mypage/my-record?type=ai")}>
                     <span>AI 튜터 기록</span>
                     <img src="/images/nextbtn.png" alt="다음으로" width={9} height={18} />
                 </div>
-                <div className="mypage-home-menu" style={{ marginBottom: "55px" }}>
+                <div className="mypage-home-menu" style={{ marginBottom: "55px" }} onClick={() => router.push("/mypage/my-record?type=bookmark")}>
                     <span>북마크한 콘텐츠</span>
                     <img src="/images/nextbtn.png" alt="다음으로" width={9} height={18} />
                 </div>

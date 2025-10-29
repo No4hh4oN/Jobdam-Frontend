@@ -1,4 +1,4 @@
-
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 "use client";
 
@@ -8,24 +8,84 @@ import NavBar from "../../../components/NavBar";
 import BackNavigator from "@/components/backButton";
 import Image from "next/image";
 import "@/styles/contentsDetail.css";
-
-
+import AxiosClient from "../../AxiosClient";
+import { useState, useEffect } from "react";
+import { error } from "node:console";
 
 export default function DetailInner() {
     const searchParams = useSearchParams();
     const type = searchParams.get("type"); // "culture" | "manner" | "tip" | "money"
-    const id = searchParams.get("id"); // 0, 1, 2
-
-    const isFirstItem = id === "0";
+    const idParam = searchParams.get("id");
 
     const router = useRouter();
     const handleBack = () => {
         router.back();
     };
 
+    // 추후 콘텐츠 추가되면 수정
+    const TYPE_ID_MAP: Record<string, number> = {
+        culture: 1,
+        manner:6,
+        tip: 11,
+        money: 16,
+    };
+
+    // const parsedId = idParam ? parseInt(idParam, 10) : NaN;
+    // const contentId =
+    //     !isNaN(parsedId) && parsedId > 0 ? parsedId : TYPE_ID_MAP[type ?? ""] ?? null;
+    const contentId = TYPE_ID_MAP[type ?? ""] ?? null;
+
+
+    const [bookmarked, setBookmarked] = useState(false);
+
+    useEffect(() => {
+        if (!contentId) return;
+            const token = localStorage.getItem("accessToken");
+        if (!token) return;
+
+        AxiosClient.get(`/contents/${contentId}/bookmarks`, {
+            headers: { Authorization: `Bearer ${token}` },
+        })
+            .then(res => {
+            // 서버에서 true/false 반환
+            setBookmarked(res.data); 
+            })
+            .catch(err => console.error(err));
+        }, [contentId]);
+
+        const handleSave = async () => {
+        if (!contentId) return alert("잘못된 콘텐츠 ID입니다.");
+
+        const token = localStorage.getItem("accessToken");
+        if (!token) return alert("로그인이 필요합니다.");
+
+        const headers = { Authorization: `Bearer ${token}` };
+        try {
+            if (!bookmarked) {
+                // 북마크 등록
+                const res = await AxiosClient.post(`/contents/${contentId}/bookmarks`, {}, { headers });
+                console.log("북마크 등록 ID:", contentId, "응답:", res);
+                setBookmarked(true);
+                alert("북마크에 저장되었습니다!");
+            } else {
+                // 북마크 취소
+                const res = await AxiosClient.delete(`/contents/${contentId}/bookmarks`, { headers });
+                console.log("북마크 취소 ID:", contentId, "응답:", res);
+                setBookmarked(false);
+                alert("북마크가 취소되었습니다!");
+            }
+        } catch (err: any) {
+            console.error("북마크 처리 중 오류:", err.response?.data || err);
+            alert("북마크 처리 중 오류가 발생했습니다.");
+        }
+
+    };
+
+
+
     return (
         <div className="Detail-contents">
-            {type === "culture" && isFirstItem && (
+            {type === "culture"  && (
                 <div className="detail-contents-box">
                     <div className="detail-contents-top-box">
                         <div className="detail-contents-top-Imgs">
@@ -41,6 +101,7 @@ export default function DetailInner() {
                                 alt="저장하기"
                                 width={35}
                                 height={35}
+                                onClick={handleSave} 
                             />
                         </div>
                         <div className="detail-contents-top-text">
@@ -109,7 +170,7 @@ export default function DetailInner() {
                 </div>
             )}
 
-            {type === "manner" && isFirstItem && (
+            {type === "manner"  && (
                 <div className="detail-contents-box">
                     <div className="detail-contents-top-box">
                         <div className="detail-contents-top-Imgs">
@@ -125,6 +186,7 @@ export default function DetailInner() {
                                 alt="저장하기"
                                 width={35}
                                 height={35}
+                                onClick={handleSave} 
                             />
                         </div>
                         <div className="detail-contents-top-text">
@@ -202,7 +264,7 @@ export default function DetailInner() {
                 </div>
             )}
 
-            {type === "tip" && isFirstItem && (
+            {type === "tip"  && (
                 <div className="detail-contents-box">
                     <div className="detail-contents-top-box">
                         <div className="detail-contents-top-Imgs">
@@ -218,6 +280,7 @@ export default function DetailInner() {
                                 alt="저장하기"
                                 width={35}
                                 height={35}
+                                onClick={handleSave} 
                             />
                         </div>
                         <div className="detail-contents-top-text">
@@ -290,7 +353,7 @@ export default function DetailInner() {
                 </div>
             )}
 
-            {type === "money" && isFirstItem && (
+            {type === "money"  && (
                 <div className="detail-contents-box">
                     <div className="detail-contents-top-box">
                         <div className="detail-contents-top-Imgs">
@@ -306,6 +369,7 @@ export default function DetailInner() {
                                 alt="저장하기"
                                 width={35}
                                 height={35}
+                                onClick={handleSave} 
                             />
                         </div>
                         <div className="detail-contents-top-text">
